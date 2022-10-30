@@ -39,6 +39,11 @@ const studnetSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
     },
     rollno: {
         type: Number,
@@ -53,4 +58,4 @@ const studnetSchema = mongoose.Schema({
 
 const Student = mongoose.model("Student", studentSchema);
 
-export default Product;
+export default Student;
