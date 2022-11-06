@@ -5,6 +5,10 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 
+// Routes
+import facultyRoute from "./routes/facultyRoute.js";
+app.use("/api/faculty", facultyRoute);
+
 app.get("/", (req, res) => {
     res.send("Api is running...");
 });

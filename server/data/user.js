@@ -37,3 +37,29 @@
         },
     ];
 }
+
+// sample data
+{
+    name: "Amit";
+    email: "amit@gmail.com";
+    password: "12345";
+    rollno: 123;
+    prn: "435436546";
+    semister: [
+        {
+            semister: 1,
+            totalAttendance: 54,
+            subject: [
+                {
+                    subjectId: "BTCOE",
+                    subjectName: "CC",
+                    total: 90,
+                    dates: {
+                        date: 12 / 1 / 2022,
+                        isPresent: True,
+                    },
+                },
+            ],
+        },
+    ];
+}

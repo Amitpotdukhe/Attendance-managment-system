@@ -13,14 +13,16 @@ const subjectSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    dates: {
-        date: Date,
-        isPresent: Boolean,
-    },
+    dates: [
+        {
+            date: Date,
+            isPresent: Boolean,
+        },
+    ],
 });
 
 const semisterSchema = mongoose.Schema({
-    semister: {
+    semisterNumber: {
         type: Number,
         required: true,
     },
@@ -31,7 +33,7 @@ const semisterSchema = mongoose.Schema({
     subject: [subjectSchema],
 });
 
-const studnetSchema = mongoose.Schema({
+const studentSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -53,7 +55,7 @@ const studnetSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    semister: [semisterSchema],
+    semisters: [semisterSchema],
 });
 
 const Student = mongoose.model("Student", studentSchema);
