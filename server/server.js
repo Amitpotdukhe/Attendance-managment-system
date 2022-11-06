@@ -7,7 +7,9 @@ const app = express();
 
 // Routes
 import facultyRoute from "./routes/facultyRoute.js";
+import studentRoute from "./routes/studentRoute.js";
 app.use("/api/faculty", facultyRoute);
+app.use("/api/student", studentRoute);
 
 app.get("/", (req, res) => {
     res.send("Api is running...");
