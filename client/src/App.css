@@ -1,0 +1,60 @@
+:root {
+    --headingFontSize: 1.5rem;
+    --normalFontSize:1.3rem;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Header css */
+.header {
+    background-color: #161b22;
+    height: 8vh;
+    color: #f0f6fc;
+    padding: 0 20px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--headingFontSize);
+}
+
+.btn-box {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+}
+
+.hamLine {
+    border-radius: 3px;
+    height: 5px;
+    width: 33px;
+    margin-top: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+.hamburger {
+    display: none;
+}
+
+.btn-header {
+    color: #f0f6fc;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: var(--normalFontSize)
+}
+
+@media (max-width: 600px) {
+    .btn-box {
+        display: none;
+    }
+    .hamburger {
+        display: block;
+    }
+}
+
+.box {
+    margin: 4vh 6vw 0 6vw;
+}

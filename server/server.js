@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const app = express();
+app.use(express.json());
 
 // Routes
 import facultyRoute from "./routes/facultyRoute.js";
