@@ -74,6 +74,7 @@ const LoginScreen = () => {
                         Signup
                     </Button>
                 </Grid>
+
                 {loginShow ? loginForm() : signupForm()}
             </Paper>
         </Grid>

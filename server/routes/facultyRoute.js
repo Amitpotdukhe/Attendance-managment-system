@@ -1,10 +1,58 @@
 import express from "express";
-import facultyData from "../data/facultyData.js";
+import Faculty from "../models/facultyModel.js";
 
 const router = express.Router();
 
-router.route("/").get((req, res) => {
-    res.json(facultyData);
+router.route("/signup").post(async (req, res) => {
+    const { facultyName, role, password, email } = req.body;
+
+    const facultyUser = await Faculty.findOne({ email });
+
+    if (facultyUser) {
+        res.status(400);
+        throw new Error("Faculty with same email already exist");
+    }
+
+    const newFaculty = await Faculty.create({
+        facultyName,
+        role,
+        password,
+        email,
+    });
+
+    if (newFaculty) {
+        res.status(201).json({
+            _id: newFaculty._id,
+            facultyName: newFaculty.facultyName,
+            role: newFaculty.role,
+            email: newFaculty.email,
+            token: null,
+        });
+    } else {
+        res.status(400);
+        throw new Error(
+            "Invalid Faculty details, Please enter correct details"
+        );
+    }
+});
+
+router.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await Faculty.findOne({ email });
+
+    if (user && (await user.password) === password) {
+        res.json({
+            _id: user._id,
+            facultyName: user.name,
+            role: user.role,
+            email: user.email,
+            token: null,
+        });
+    } else {
+        res.status(401);
+        throw new Error("Invalid email or password");
+    }
 });
 
 export default router;
