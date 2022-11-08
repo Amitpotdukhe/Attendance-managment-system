@@ -18,4 +18,6 @@
 <li>To notify students about their attendance percentage via emails.</li>
 </ul>
 
+<h3>Use Case Diagram</h3>
+
 ![WhatsApp Image 2022-11-08 at 16 57 32](https://user-images.githubusercontent.com/65117013/200557423-0d0ec753-e75d-4b5e-ba2a-a3467f2e3538.jpg)
