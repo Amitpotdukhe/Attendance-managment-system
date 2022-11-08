@@ -3,7 +3,8 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header";
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen from "./screens/homeScreen";
+import LoginScreen from "./screens/loginScreen";
 
 // const renderLoader = () => {
 //     <div className="loader">
@@ -18,6 +19,7 @@ function App() {
             <div className="box">
                 <Routes>
                     <Route path="/" element={<HomeScreen />} />
+                    <Route path="/login" element={<LoginScreen />} />
                 </Routes>
             </div>
         </>

@@ -6,11 +6,14 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+import connectDB from "./config/db.js";
 // Routes
 import facultyRoute from "./routes/facultyRoute.js";
 import studentRoute from "./routes/studentRoute.js";
 app.use("/api/faculty", facultyRoute);
 app.use("/api/student", studentRoute);
+
+connectDB();
 
 app.get("/", (req, res) => {
     res.send("Api is running...");

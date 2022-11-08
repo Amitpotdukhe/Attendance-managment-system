@@ -10,7 +10,7 @@ const subjectSchema = mongoose.Schema({
         required: true,
     },
     total: {
-        type: String,
+        type: Number,
         required: true,
     },
     dates: [
