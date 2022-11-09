@@ -1,4 +1,4 @@
-import { Button, Grid, InputAdornment, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import React from "react";
 import Table from "../components/Table";
 import SearchIcon from "@mui/icons-material/Search";
@@ -11,7 +11,7 @@ const StudentsAttendanceScreen = () => {
                 id="outlined-size-small"
                 size="small"
                 style={{ width: "80%", margin: "30px 0 30px 0" }}
-                endAdornment={<SearchIcon></SearchIcon>}
+                endAdornment={<SearchIcon />}
             />
             <Table />
             <Button style={{ margin: "30px 0 40px 0" }} variant="contained">

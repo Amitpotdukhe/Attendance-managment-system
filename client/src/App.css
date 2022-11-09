@@ -1,6 +1,6 @@
 :root {
     --headingFontSize: 1.5rem;
-    --normalFontSize:1.3rem;
+    --normalFontSize:1.1rem;
 }
 
 * {
@@ -12,7 +12,7 @@
 /* Header css */
 .header {
     background-color: #161b22;
-    height: 8vh;
+    height: 9vh;
     color: #f0f6fc;
     padding: 0 20px 0 20px;
     display: flex;
@@ -24,7 +24,7 @@
 .btn-box {
     display: flex;
     justify-content: space-evenly;
-    width: 30%;
+    width: 40%;
 }
 
 .hamLine {
@@ -46,6 +46,11 @@
     font-size: var(--normalFontSize)
 }
 
+.btn-header:hover {
+    text-decoration: underline;
+    
+}
+
 @media (max-width: 600px) {
     .btn-box {
         display: none;
@@ -53,6 +58,13 @@
     .hamburger {
         display: block;
     }
+        .box {
+            margin: 4vh 2vw 0 2vw;
+        }
+        .loginField {
+            width: 17rem !important;
+        }
+
 }
 
 .box {

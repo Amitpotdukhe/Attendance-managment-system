@@ -9,9 +9,18 @@ const Header = () => {
             <div className="header">
                 Attendance Managment System
                 <div className="btn-box">
-                    <Link className="btn-header">Home</Link>
-                    <Link className="btn-header">Login</Link>
-                    <Link className="btn-header">SignUp</Link>
+                    <Link to="/" className="btn-header">
+                        Home
+                    </Link>
+                    <Link to="/login" className="btn-header">
+                        Login
+                    </Link>
+                    <Link to="/addStudent" className="btn-header">
+                        Add student
+                    </Link>
+                    <Link to="/student/dashboard" className="btn-header">
+                        Dashboard
+                    </Link>
                 </div>
                 <div
                     className="hamburger"

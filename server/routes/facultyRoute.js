@@ -3,40 +3,40 @@ import Faculty from "../models/facultyModel.js";
 
 const router = express.Router();
 
-router.route("/signup").post(async (req, res) => {
+router.route("/signup").post(async (req, res, next) => {
     const { facultyName, role, password, email } = req.body;
 
     const facultyUser = await Faculty.findOne({ email });
 
     if (facultyUser) {
-        res.status(400);
-        throw new Error("Faculty with same email already exist");
-    }
-
-    const newFaculty = await Faculty.create({
-        facultyName,
-        role,
-        password,
-        email,
-    });
-
-    if (newFaculty) {
-        res.status(201).json({
-            _id: newFaculty._id,
-            facultyName: newFaculty.facultyName,
-            role: newFaculty.role,
-            email: newFaculty.email,
-            token: null,
-        });
+        next(new Error("Faculty already exist"));
     } else {
-        res.status(400);
-        throw new Error(
-            "Invalid Faculty details, Please enter correct details"
-        );
+        const newFaculty = await Faculty.create({
+            facultyName,
+            role,
+            password,
+            email,
+        });
+
+        if (newFaculty) {
+            res.status(201).json({
+                _id: newFaculty._id,
+                facultyName: newFaculty.facultyName,
+                role: newFaculty.role,
+                email: newFaculty.email,
+                token: null,
+            });
+        } else {
+            next(
+                new Error(
+                    "Invalid Faculty details, Please enter correct details"
+                )
+            );
+        }
     }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await Faculty.findOne({ email });
@@ -50,8 +50,7 @@ router.post("/login", async (req, res) => {
             token: null,
         });
     } else {
-        res.status(401);
-        throw new Error("Invalid email or password");
+        next(new Error("Email or password is incorrect!"));
     }
 });
 

@@ -7,12 +7,8 @@ import HomeScreen from "./screens/homeScreen";
 import LoginScreen from "./screens/loginScreen";
 import FacultyDashboardScreen from "./screens/facultyDashboardScreen";
 import StudentsAttendanceScreen from "./screens/studentsAttendanceScreen";
-
-// const renderLoader = () => {
-//     <div className="loader">
-//         <strong>Loading......</strong>
-//     </div>;
-// };
+import DashboardScreen from "./screens/DashboardScreen";
+import AddStudentScreen from "./screens/AddStudentScreen";
 
 function App() {
     return (
@@ -30,6 +26,11 @@ function App() {
                         path="/faculty/dashboard"
                         element={<FacultyDashboardScreen />}
                     />
+                    <Route
+                        path="/student/dashboard"
+                        element={<DashboardScreen />}
+                    />
+                    <Route path="/addStudent/" element={<AddStudentScreen />} />
                 </Routes>
             </div>
         </>
