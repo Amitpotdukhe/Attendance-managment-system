@@ -1,7 +1,17 @@
 import express from "express";
 import Faculty from "../models/facultyModel.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
+
+router.get("/", protect, async (req, res, next) => {
+    const faculties = await Faculty.find();
+    if (!faculties) {
+        next(new Error("Cannot fetch faculties"));
+    } else {
+        res.status(200).json({ faculties });
+    }
+});
 
 router.route("/signup").post(async (req, res, next) => {
     const { facultyName, role, password, email } = req.body;

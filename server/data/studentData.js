@@ -288,6 +288,39 @@ const studentData = [
                     },
                 ],
             },
+            {
+                semisterNumber: 2,
+                totalAttendance: 50,
+                subject: [
+                    {
+                        subjectId: "BTCOE",
+                        subjectName: "Machine learning",
+                        total: "56",
+                        dates: [
+                            {
+                                date: 1987 - 9 - 28,
+                                ispresent: true,
+                            },
+                            {
+                                date: 1987 - 9 - 27,
+                                ispresent: true,
+                            },
+                            {
+                                date: 1987 - 9 - 26,
+                                ispresent: true,
+                            },
+                            {
+                                date: 1987 - 9 - 25,
+                                ispresent: true,
+                            },
+                            {
+                                date: 1987 - 9 - 24,
+                                ispresent: true,
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
     },
     {
@@ -331,7 +364,7 @@ const studentData = [
                 ],
             },
         ],
-    }
+    },
 ];
 
 export default studentData;

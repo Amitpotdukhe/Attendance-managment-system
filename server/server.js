@@ -14,7 +14,9 @@ import connectDB from "./config/db.js";
 
 // Middlewares
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+import { protect } from "./middleware/authMiddleware.js";
 
+// app.use(protect);
 app.use("/api/faculty", facultyRoute);
 app.use("/api/student", studentRoute);
 

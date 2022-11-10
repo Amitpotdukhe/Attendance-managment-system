@@ -22,12 +22,16 @@ const DashboardScreen = () => {
                     }}
                     alt=""
                 />
-                <Typography variant="h4">Ilon Mosk</Typography>
+                <Typography variant="h4">ilon Mosk</Typography>
                 <Typography variant="h6">Computer Engineering</Typography>
             </Grid>
             <Grid item md={8} xs={12}>
                 <Paper elevation={3} stype={{ padding: "20px" }}>
-                    <Grid container justifyContent="center">
+                    <Grid
+                        container
+                        justifyContent="center"
+                        columns={{ xs: 12, md: 4 }}
+                    >
                         <Button style={{ width: "20%" }}>Attendance</Button>
                         <Button style={{ width: "20%" }}>Edit</Button>
                         <Button style={{ width: "20%" }}>Details</Button>

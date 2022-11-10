@@ -7,6 +7,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "roboto";
 }
 
 /* Header css */
@@ -51,7 +52,7 @@
     
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .btn-box {
         display: none;
     }
@@ -63,6 +64,9 @@
         }
         .loginField {
             width: 17rem !important;
+        }
+        .heading{
+            display: none;
         }
 
 }

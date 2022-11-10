@@ -7,7 +7,20 @@ const Header = () => {
     return (
         <>
             <div className="header">
-                Attendance Managment System
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                        style={{
+                            height: "50px",
+                            width: "70px",
+                            animationPlayState: "running",
+                            animation: "3s ease infinite float-y paused",
+                            margin: "5px",
+                        }}
+                        src="/hero-drone.webp"
+                        alt=""
+                    />
+                    <p className="heading">Attendance Managment System</p>
+                </div>
                 <div className="btn-box">
                     <Link to="/" className="btn-header">
                         Home
