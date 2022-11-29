@@ -10,7 +10,7 @@ app.use(express.json());
 // Routes & configs
 import facultyRoute from "./routes/facultyRoute.js";
 import studentRoute from "./routes/studentRoute.js";
-import connectDB from "./config/db.js";
+import db from "./config/db.js";
 
 // Middlewares
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
@@ -20,7 +20,7 @@ import { protect } from "./middleware/authMiddleware.js";
 app.use("/api/faculty", facultyRoute);
 app.use("/api/student", studentRoute);
 
-connectDB();
+// connectDB();
 
 app.get("/", (req, res) => {
     res.send("Api is running...");

@@ -1,19 +1,29 @@
-import mongoose from "mongoose";
+import mysql from "mysql";
 
-const connectDB = async () => {
-    try {
-        const connection = await mongoose.connect(process.env.MONGO_URI, {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-        });
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "AMS",
+});
 
-        console.log(
-            `MongoDB connected: ${connection.connection.host}`.cyan.underline
-        );
-    } catch (error) {
-        console.log(`Error: ${error.message}`.red.underline.bold);
-        process.exit(1);
-    }
+const connectDb = async () => {
+    await db.connect((err) => {
+        if (err) {
+            console.log("error");
+        } else {
+            console.log(`connected to mysql`.green.bold);
+        }
+    });
 };
+connectDb();
 
-export default connectDB;
+export default db;
+
+// db.query("select * from blog_data", (err, result) => {
+//     if (err) {
+//         console.log("result", err);
+//     } else {
+//         console.log("result", result);
+//     }
+// });
