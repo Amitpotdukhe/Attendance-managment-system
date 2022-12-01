@@ -19,11 +19,3 @@ const connectDb = async () => {
 connectDb();
 
 export default db;
-
-// db.query("select * from blog_data", (err, result) => {
-//     if (err) {
-//         console.log("result", err);
-//     } else {
-//         console.log("result", result);
-//     }
-// });

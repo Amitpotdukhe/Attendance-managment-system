@@ -10,6 +10,7 @@ app.use(express.json());
 // Routes & configs
 import facultyRoute from "./routes/facultyRoute.js";
 import studentRoute from "./routes/studentRoute.js";
+import adminRoute from "./routes/adminRoute.js";
 import db from "./config/db.js";
 
 // Middlewares
@@ -19,6 +20,7 @@ import { protect } from "./middleware/authMiddleware.js";
 // app.use(protect);
 app.use("/api/faculty", facultyRoute);
 app.use("/api/student", studentRoute);
+app.use("/api/admin", adminRoute);
 
 // connectDB();
 

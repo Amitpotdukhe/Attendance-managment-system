@@ -4,25 +4,6 @@ import db from "../config/db.js";
 
 const router = express.Router();
 
-router.get("/add-master", async (req, res) => {
-    // const {year, }
-});
-
-router.post("/add-subjects", async (req, res, next) => {
-    const { ffn, fln, role, email } = req.body;
-
-    await db.query(
-        `INSERT INTO faculty (FACULTY_FIRST_NAME, FACULTY_LAST_NAME, FACULTY_ROLE, FACULTY_EMAIL) VALUES (${ffn}, ${fln}, ${role}, ${email});`,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json("Subject added sucessfully");
-            }
-        }
-    );
-});
-
 // router.get("/", protect, async (req, res, next) => {
 //     const faculties = await Faculty.find();
 //     if (!faculties) {
@@ -65,23 +46,37 @@ router.post("/add-subjects", async (req, res, next) => {
 //     }
 // });
 
-// router.post("/login", async (req, res, next) => {
-//     const { email, password } = req.body;
+router.post("/login", async (req, res, next) => {
+    const data = req.body;
 
-//     const user = await Faculty.findOne({ email });
-
-//     if (user && (await user.password) === password) {
-//         res.json({
-//             _id: user._id,
-//             facultyName: user.name,
-//             role: user.role,
-//             email: user.email,
-//             token: null,
-//         });
-//     } else {
-//         next(new Error("Email or password is incorrect!"));
-//     }
-// });
+    await db.query(
+        "select * from faculty where FACULTY_EMAIL=?",
+        data[0],
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                console.log(result[3]);
+                if (data[1] === result.PASSWORD) {
+                    res.status(200).json(result);
+                } else {
+                    res.status(200).json("Wrong email or password");
+                }
+            }
+        }
+    );
+    // if (user && (await user.password) === password) {
+    //     res.json({
+    //         _id: user._id,
+    //         facultyName: user.name,
+    //         role: user.role,
+    //         email: user.email,
+    //         token: null,
+    //     });
+    // } else {
+    //     next(new Error("Email or password is incorrect!"));
+    // }
+});
 
 // router.post("/mark-attendance", async (req, res) => {
 //     const { subject, email, attendance } = req.body;
