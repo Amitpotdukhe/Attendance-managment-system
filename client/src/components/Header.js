@@ -19,7 +19,7 @@ const Header = () => {
                         src="/hero-drone.webp"
                         alt=""
                     />
-                    <p className="heading">Attendance Managment System</p>
+                    <p className="heading">AMS</p>
                 </div>
                 <div className="btn-box">
                     <Link to="/" className="btn-header">
