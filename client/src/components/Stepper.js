@@ -7,8 +7,20 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Table from "./Table";
 import Datepicker from "./Datepicker";
+import { Grid } from "@mui/material";
+import Card from "./Card";
 
 const steps = ["Select Subject", "Choose date ", "Update attendance"];
+const subjects = [
+    { subject: "Cloud Computing", faculty: "ABC" },
+    { subject: "Cloud Computing Lab", faculty: "ABC" },
+    { subject: "Big Data Analytics", faculty: "khbdfahbv" },
+    { subject: "Big Data Analytics Lab", faculty: "khbdfahbv" },
+    { subject: "FSD", faculty: "poSDioj" },
+    { subject: "FSD Lab", faculty: "poSDioj" },
+    { subject: "Blockchain Technology", faculty: "nmadnf" },
+    { subject: "Software Engineering", faculty: "aifhdjou sdhfb" },
+];
 
 export default function Steper() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -56,8 +68,24 @@ export default function Steper() {
         setActiveStep(0);
     };
 
+    const selectSubjects = () => {
+        return (
+            <Grid container>
+                {subjects.map((item) => {
+                    return (
+                        <Card
+                            key={item.subject}
+                            name={item.subject}
+                            faculty={item.faculty}
+                        />
+                    );
+                })}
+            </Grid>
+        );
+    };
+
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "70%" }}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {};
@@ -89,11 +117,9 @@ export default function Steper() {
                 </React.Fragment>
             ) : (
                 <React.Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }}>
-                        Step {activeStep + 1}
-                    </Typography>
+                    <Typography sx={{ mt: 2, mb: 1 }}></Typography>
                     {activeStep === 0 ? (
-                        <h4>select subjects</h4>
+                        selectSubjects()
                     ) : activeStep === 1 ? (
                         <Datepicker />
                     ) : (

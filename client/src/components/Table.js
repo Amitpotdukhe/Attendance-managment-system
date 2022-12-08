@@ -1,5 +1,5 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material/";
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
@@ -114,6 +114,7 @@ const rows = [
 export default function Table() {
     return (
         <Box sx={{ height: 600, width: "80%" }}>
+            <Typography>List of all students</Typography>
             <DataGrid
                 rows={rows}
                 columns={columns}
