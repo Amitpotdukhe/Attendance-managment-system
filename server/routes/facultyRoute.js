@@ -1,7 +1,10 @@
 import express from "express";
 import { protect } from "../middleware/authMiddleware.js";
 import db from "../config/db.js";
+import store from "store";
+import { LocalStorage } from "node-localstorage";
 
+var localStorage = new LocalStorage("./users");
 const router = express.Router();
 
 // router.get("/", protect, async (req, res, next) => {
@@ -48,52 +51,28 @@ const router = express.Router();
 
 router.post("/login", async (req, res, next) => {
     const data = req.body;
-
+    console.log(data);
     await db.query(
-        "select * from faculty where FACULTY_EMAIL=?",
-        data[0],
-        (err, result) => {
+        `select FACULTY_ID,FACULTY_FIRST_NAME,FACULTY_LAST_NAME, FACULTY_ROLE,FACULTY_EMAIL  from faculty where faculty.FACULTY_EMAIL='${data[0]}'`,
+        (err, result, fields) => {
             if (err) {
+                console.log(err);
                 next(new Error(err));
             } else {
-                console.log(result[3]);
-                if (data[1] === result.PASSWORD) {
-                    res.status(200).json(result);
-                } else {
-                    res.status(200).json("Wrong email or password");
-                }
+                store.set("user", { name: "amir" });
+                localStorage.setItem("user", data);
+                res.status(200).json(result);
             }
         }
     );
-    // if (user && (await user.password) === password) {
-    //     res.json({
-    //         _id: user._id,
-    //         facultyName: user.name,
-    //         role: user.role,
-    //         email: user.email,
-    //         token: null,
-    //     });
-    // } else {
-    //     next(new Error("Email or password is incorrect!"));
-    // }
 });
 
-// router.post("/mark-attendance", async (req, res) => {
-//     const { subject, email, attendance } = req.body;
+router.get("curruser", (req, res) => {});
 
-//     const curStudentAttendace = await Attendance.findOne({ email });
-//     curStudentAttendace = curStudentAttendace.attendance.forEach(
-//         (curStudent) => {
-//             if (curStudent.isPresent) {
-//                 curStudentAttendace.total += 1;
-//                 curStudent.dates.push({ date: new Date(), isPresent: true });
-//             } else {
-//                 curStudent.dates.push({ dates: new Date(), isPresent: false });
-//             }
-//         }
-//     );
-
-//     await curStudentAttendace.save();
-// });
+router.post("/mark-attendance", (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    console.log(localStorage.getItem("user")[0]);
+});
 
 export default router;

@@ -9,37 +9,35 @@ const router = express.Router();
 router.post("/add-faculty", async (req, res, next) => {
     const data = req.body;
     console.log(data);
-    await db.query(
-        'INSERT into faculty SET ?',
-        data,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json("Faculty added sucessfully");
-            }
+    await db.query("INSERT into faculty SET ?", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json("Faculty added sucessfully");
         }
-    );
+    });
 });
 
 router.get("/get-faculty", async (req, res, next) => {
     const data = req.body;
     console.log(data);
-    await db.query(
-        "select * from faculty",
-        data,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json(result);
-            }
+    await db.query("select * from faculty", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json(result);
         }
-    );
+    });
 });
 
 router.put("/update-faculty/:id", async (req, res, next) => {
-    const data = [req.body.FACULTY_FIRST_NAME, req.body.FACULTY_LAST_NAME, req.body.FACULTY_ROLE, req.body.FACULTY_EMAIL, req.params.id];
+    const data = [
+        req.body.FACULTY_FIRST_NAME,
+        req.body.FACULTY_LAST_NAME,
+        req.body.FACULTY_ROLE,
+        req.body.FACULTY_EMAIL,
+        req.params.id,
+    ];
     console.log(data);
     await db.query(
         "UPDATE faculty SET FACULTY_FIRST_NAME = ?, FACULTY_LAST_NAME = ?, FACULTY_ROLE = ?, FACULTY_EMAIL = ? where FACULTY_ID = ?",
@@ -55,7 +53,13 @@ router.put("/update-faculty/:id", async (req, res, next) => {
 });
 
 router.delete("/delete-faculty/:id", async (req, res, next) => {
-    const data = [req.body.FACULTY_FIRST_NAME, req.body.FACULTY_LAST_NAME, req.body.FACULTY_ROLE, req.body.FACULTY_EMAIL, req.params.id];
+    const data = [
+        req.body.FACULTY_FIRST_NAME,
+        req.body.FACULTY_LAST_NAME,
+        req.body.FACULTY_ROLE,
+        req.body.FACULTY_EMAIL,
+        req.params.id,
+    ];
     console.log(data);
     await db.query(
         "DELETE FROM FACULTY where FACULTY_ID = " + req.params.id,
@@ -89,19 +93,13 @@ router.post("/add-subjects", async (req, res, next) => {
 });
 
 router.get("/get-subjects", async (req, res, next) => {
-    const data = req.body;
-    console.log(data);
-    await db.query(
-        "select * from subjects",
-        data,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json(result);
-            }
+    await db.query("select * from subjects", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json(result);
         }
-    );
+    });
 });
 
 router.put("/update-subjects/:id", async (req, res, next) => {
@@ -206,33 +204,23 @@ router.delete("/delete-subjects/:id", async (req, res, next) => {
 router.post("/add-departments", async (req, res, next) => {
     const data = req.body;
     console.log(data);
-    await db.query(
-        "INSERT into departments SET ?",
-        data,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json("department added sucessfully");
-            }
+    await db.query("INSERT into departments SET ?", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json("department added sucessfully");
         }
-    );
+    });
 });
 
 router.get("/get-departments", async (req, res, next) => {
-    const data = req.body;
-    console.log(data);
-    await db.query(
-        "select * from departments",
-        data,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json(result);
-            }
+    await db.query("select * from departments", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json(result);
         }
-    );
+    });
 });
 
 router.put("/update-departments/:id", async (req, res, next) => {
@@ -266,6 +254,5 @@ router.delete("/delete-departments/:id", async (req, res, next) => {
         }
     );
 });
-
 
 export default router;
