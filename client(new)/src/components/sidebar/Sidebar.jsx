@@ -16,6 +16,15 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 
+const subjects = [
+  "Cloud computing",
+  "Cloud computing lab",
+  "Big data analytics",
+  "Big data analytics lab",
+  "Software engineering",
+  
+]
+
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
@@ -33,19 +42,7 @@ const Sidebar = () => {
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
-          <p className="title">SUBJECTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
-            <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Cloud Computing</span>
-            </li>
-          </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
-            <li>
-              <StoreIcon className="icon" />
-              <span>Cloud Computing Lab</span>
-            </li>
-          </Link>
+          
           
           
           <p className="title">HOD</p>
@@ -74,15 +71,19 @@ const Sidebar = () => {
             </li>
           </Link>
 
-
           <p className="title">SERVICES</p>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
             <span>Mark Attandance</span>
           </li>
           <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Modify Attandance</span>
+           
+            <Link to="/faculty/modify-attendance" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Modify Attandance</span>
+            </li>
+          </Link>
           </li>
           <li>
             <SettingsApplicationsIcon className="icon" />
@@ -92,6 +93,22 @@ const Sidebar = () => {
             <SettingsApplicationsIcon className="icon" />
             <span>Generate Report</span>
           </li>
+
+          <p className="title">SUBJECTS</p>
+          {subjects.map((item) => {
+            return(
+            <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+                <span>{item}</span>
+            </li>
+              </Link>
+            )
+          })}
+          
+          
+          
+          
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />

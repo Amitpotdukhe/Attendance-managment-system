@@ -1,5 +1,4 @@
 import "./widget.scss";
-import React from "react"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
@@ -9,16 +8,15 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 const Widget = ({ type }) => {
   let data;
 
-  //temporary
-  const amount = 100;
-  const diff = 20;
+
 
   switch (type) {
-    case "user":
+    case "STUDENTS":
       data = {
-        title: "USERS",
+        title: "Total Students",
+        amount: 540,
         isMoney: false,
-        link: "See all users",
+        link: "See all students",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -30,17 +28,18 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "order":
+    case "FACULTY":
       data = {
-        title: "ORDERS",
+        title: "Faculties",
+        amount: 12,
         isMoney: false,
-        link: "View all orders",
+        link: "View all faculties",
         icon: (
-          <ShoppingCartOutlinedIcon
+          <PersonOutlinedIcon
             className="icon"
             style={{
-              backgroundColor: "rgba(218, 165, 32, 0.2)",
-              color: "goldenrod",
+              color: "green",
+              backgroundColor: "rgba(255, 0, 0, 0.2)",
             }}
           />
         ),
@@ -84,14 +83,12 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "$"} {data.amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
       <div className="right">
         <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} %
         </div>
         {data.icon}
       </div>

@@ -1,5 +1,4 @@
 import "./chart.scss";
-import React from "react"
 import {
   AreaChart,
   Area,
@@ -16,9 +15,6 @@ const data = [
   { name: "April", Total: 1600 },
   { name: "May", Total: 900 },
   { name: "June", Total: 1700 },
-  { name: "July", Total: 1000 },
-  { name: "August", Total: 2000 },
-  { name: "September", Total: 1800 },
 ];
 
 const Chart = ({ aspect, title }) => {

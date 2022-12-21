@@ -1,9 +1,9 @@
 import "./datatable.scss";
-import React from "react"
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Sidebar from "../sidebar/Sidebar";
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
@@ -36,12 +36,15 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
-      </div>
+      <div className="new">
+            <Sidebar />
+            <div className="newContainer">
+                <div className="newContainer">
+        Modify Attendance
+        
+          </div>
+          
+          
       <DataGrid
         className="datagrid"
         rows={data}
@@ -51,6 +54,10 @@ const Datatable = () => {
         checkboxSelection
       />
     </div>
+            </div>
+        </div>
+      
+      
   );
 };
 
