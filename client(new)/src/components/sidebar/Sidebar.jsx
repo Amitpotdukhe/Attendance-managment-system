@@ -25,26 +25,43 @@ const subjects = [
   
 ]
 
-const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
-  return (
-    <div className="sidebar">
-      <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Dashboard</span>
-        </Link>
+const Sidebar = ({ isStudent = false }) => {
+  
+  const student = () => {
+    return (
+      <div>
+        <p className="title">Student</p>
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            <li>
+              <LocalShippingIcon className="icon" />
+              <span>Add Faculty</span>
+            </li>
+          </Link>
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Add Subject</span>
+            </li>
+          </Link>
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Assign Subjects</span>
+            </li>
+          </Link>
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>View Semisters</span>
+            </li>
+          </Link>
       </div>
-      <hr />
-      <div className="center">
-        <ul>
-          <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
-          
-          
-          
+    )
+  }
+
+  const faculty = () => {
+    return (
+<div>
           <p className="title">HOD</p>
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
@@ -92,7 +109,30 @@ const Sidebar = () => {
           <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Generate Report</span>
+            </li>
+            </div>
+    )
+  }
+
+  const { dispatch } = useContext(DarkModeContext);
+  return (
+    <div className="sidebar">
+      <div className="top">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">Dashboard</span>
+        </Link>
+      </div>
+      <hr />
+      <div className="center">
+        <ul>
+          <p className="title">MAIN</p>
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Dashboard</span>
           </li>
+          
+          {isStudent ? student() : faculty()}
+          
 
           <p className="title">SUBJECTS</p>
           {subjects.map((item) => {

@@ -2,12 +2,13 @@ import express from "express";
 import { protect } from "../middleware/authMiddleware.js";
 import db from "../config/db.js";
 import store from "store";
+import url from "url";
 import { LocalStorage } from "node-localstorage";
 
 var localStorage = new LocalStorage("./users");
 const router = express.Router();
 
-router.post("/login", async (req, res, next) => {
+router.post("/faculty/login", async (req, res, next) => {
     const data = req.body;
     console.log(data);
     await db.query(
@@ -25,12 +26,16 @@ router.post("/login", async (req, res, next) => {
     );
 });
 
-router.get("curruser", (req, res) => {});
+router.get("/faculty/curruser", (req, res) => {});
 
-router.post("/mark-attendance", (req, res, next) => {
+router.post("/faculty/mark-attendance", protect, (req, res, next) => {
+    var url_parts = url.parse(req.url);
+    console.log(url_parts);
+    console.log(url_parts.pathname.split("/")[1]);
     const data = req.body;
     console.log(data);
-    console.log(localStorage.getItem("user")[0]);
+    const x = localStorage.getItem("user").split(",");
+    console.log(x[0]);
 });
 
 export default router;

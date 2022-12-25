@@ -18,7 +18,7 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import { protect } from "./middleware/authMiddleware.js";
 
 // app.use(protect);
-app.use("/api/faculty", facultyRoute);
+app.use("/api", facultyRoute);
 app.use("/api/student", studentRoute);
 app.use("/api/admin", adminRoute);
 

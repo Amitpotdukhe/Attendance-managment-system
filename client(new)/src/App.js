@@ -5,13 +5,14 @@ import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Analyze from "./pages/studentDashboard/Analyze";
 import "./pages/home/home.scss";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
-import Sidebar from "./components/sidebar/Sidebar";
 import MarkAttendance from "./components/markAttendance/MarkAttendance";
+import StudentDashboard from "./pages/studentDashboard/StudentDashboard";
 import Datatable from "./components/datatable/Datatable";
 
 function App() {
@@ -25,6 +26,16 @@ function App() {
                     <Route path="/">
                         <Route index element={<Home />} />
                         <Route path="login" element={<Login />} />
+                        <Route
+                            path="student-dashboard"
+                            element={<StudentDashboard />}
+                        />
+                        <Route
+                            path="student-dashboard/analyze-subjects"
+                            element={<Analyze />}
+                        />
+                        <Route path=""></Route>
+
                         <Route path="faculty">
                             <Route index element={<List />} />
                             <Route path=":userId" element={<Single />} />
