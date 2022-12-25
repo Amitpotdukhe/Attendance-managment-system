@@ -6,7 +6,7 @@ const router = express.Router();
 
 // --------------------> Faculty Table Routes ----------------------------------->
 
-router.post("/add-faculty", async (req, res, next) => {
+router.post("/admin/add-faculty", async (req, res, next) => {
     const data = req.body;
     console.log(data);
     await db.query("INSERT into faculty SET ?", data, (err, result) => {
@@ -18,7 +18,7 @@ router.post("/add-faculty", async (req, res, next) => {
     });
 });
 
-router.get("/get-faculty", async (req, res, next) => {
+router.get("/admin/get-faculty", async (req, res, next) => {
     const data = req.body;
     console.log(data);
     await db.query("select * from faculty", data, (err, result) => {
@@ -30,7 +30,7 @@ router.get("/get-faculty", async (req, res, next) => {
     });
 });
 
-router.put("/update-faculty/:id", async (req, res, next) => {
+router.put("/admin/update-faculty/:id", async (req, res, next) => {
     const data = [
         req.body.FACULTY_FIRST_NAME,
         req.body.FACULTY_LAST_NAME,
@@ -52,7 +52,7 @@ router.put("/update-faculty/:id", async (req, res, next) => {
     );
 });
 
-router.delete("/delete-faculty/:id", async (req, res, next) => {
+router.delete("/admin/delete-faculty/:id", async (req, res, next) => {
     const data = [
         req.body.FACULTY_FIRST_NAME,
         req.body.FACULTY_LAST_NAME,
@@ -69,66 +69,6 @@ router.delete("/delete-faculty/:id", async (req, res, next) => {
                 next(new Error(err));
             } else {
                 res.status(200).json("Faculty Deleted sucessfully");
-            }
-        }
-    );
-});
-
-// --------------------> Subject Table Routes ----------------------------------->
-
-router.post("/add-subjects", async (req, res, next) => {
-    const data = req.body;
-    console.log(data);
-    await db.query(
-        "INSERT into subjects SET ?",
-        data,
-        (err, result, fields) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json("Subject added sucessfully");
-            }
-        }
-    );
-});
-
-router.get("/get-subjects", async (req, res, next) => {
-    await db.query("select * from subjects", data, (err, result) => {
-        if (err) {
-            next(new Error(err));
-        } else {
-            res.status(200).json(result);
-        }
-    });
-});
-
-router.put("/update-subjects/:id", async (req, res, next) => {
-    const data = [req.body.SUBJECT_NAME, req.params.id];
-    console.log(data);
-    await db.query(
-        "UPDATE subjects SET SUBJECT_NAME = ? where SUBJECT_ID = ?",
-        data,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json("Subjects Updated sucessfully");
-            }
-        }
-    );
-});
-
-router.delete("/delete-subjects/:id", async (req, res, next) => {
-    const data = [req.body.SUBJECT_NAME, req.params.id];
-    console.log(data);
-    await db.query(
-        "DELETE FROM subjects where SUBJECT_ID = " + req.params.id,
-        data,
-        (err, result) => {
-            if (err) {
-                next(new Error(err));
-            } else {
-                res.status(200).json("Subjects Deleted sucessfully");
             }
         }
     );
@@ -201,7 +141,7 @@ router.delete("/delete-subjects/:id", async (req, res, next) => {
 // });
 
 // --------------------> Departments Table Routes ----------------------------------->
-router.post("/add-departments", async (req, res, next) => {
+router.post("/admin/add-departments", async (req, res, next) => {
     const data = req.body;
     console.log(data);
     await db.query("INSERT into departments SET ?", data, (err, result) => {
@@ -213,7 +153,7 @@ router.post("/add-departments", async (req, res, next) => {
     });
 });
 
-router.get("/get-departments", async (req, res, next) => {
+router.get("/admin/get-departments", async (req, res, next) => {
     await db.query("select * from departments", data, (err, result) => {
         if (err) {
             next(new Error(err));
@@ -223,7 +163,7 @@ router.get("/get-departments", async (req, res, next) => {
     });
 });
 
-router.put("/update-departments/:id", async (req, res, next) => {
+router.put("/admin/update-departments/:id", async (req, res, next) => {
     const data = [req.body.DEPARTMENT_NAME, req.params.id];
     console.log(data);
     await db.query(
@@ -239,7 +179,7 @@ router.put("/update-departments/:id", async (req, res, next) => {
     );
 });
 
-router.delete("/delete-departments/:id", async (req, res, next) => {
+router.delete("/admin/delete-departments/:id", async (req, res, next) => {
     const data = [req.body.DEPARTMENT_NAME, req.params.id];
     console.log(data);
     await db.query(

@@ -14,6 +14,8 @@ import { DarkModeContext } from "./context/darkModeContext";
 import MarkAttendance from "./components/markAttendance/MarkAttendance";
 import StudentDashboard from "./pages/studentDashboard/StudentDashboard";
 import Datatable from "./components/datatable/Datatable";
+import AddFaculty from "./pages/addFaculty/AddFaculty";
+import ViewFaculties from "./pages/viewFaculties/ViewFaculties";
 
 function App() {
     const { darkMode } = useContext(DarkModeContext);
@@ -24,8 +26,10 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/">
-                        <Route index element={<Home />} />
-                        <Route path="login" element={<Login />} />
+                        <Route path="home" element={<Home />} />
+
+                        <Route index element={<Login />} />
+
                         <Route
                             path="student-dashboard"
                             element={<StudentDashboard />}
@@ -34,11 +38,12 @@ function App() {
                             path="student-dashboard/analyze-subjects"
                             element={<Analyze />}
                         />
-                        <Route path=""></Route>
 
                         <Route path="faculty">
                             <Route index element={<List />} />
+                            <Route path="add" element={<AddFaculty />} />
                             <Route path=":userId" element={<Single />} />
+                            <Route path="view" element={<ViewFaculties />} />
                             <Route
                                 path="new"
                                 element={
@@ -57,6 +62,7 @@ function App() {
                                 element={<Datatable />}
                             />
                         </Route>
+
                         <Route path="products">
                             <Route index element={<List />} />
                             <Route path=":productId" element={<Single />} />

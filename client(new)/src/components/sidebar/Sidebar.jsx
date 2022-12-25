@@ -62,14 +62,27 @@ const Sidebar = ({ isStudent = false }) => {
   const faculty = () => {
     return (
 <div>
-          <p className="title">HOD</p>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+        <p className="title">HOD</p>
+        <Link to="/faculty/view" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>View Faculties</span>
+            </li>
+        </Link>
+          <Link to="/faculty/add" style={{ textDecoration: "none" }}>
             <li>
               <LocalShippingIcon className="icon" />
               <span>Add Faculty</span>
             </li>
+        </Link>
+        
+        <Link to="/faculty/view" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>View Subjects</span>
+            </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/faculty/add-subject" style={{ textDecoration: "none" }}>
             <li>
               <CreditCardIcon className="icon" />
               <span>Add Subject</span>
@@ -89,10 +102,12 @@ const Sidebar = ({ isStudent = false }) => {
           </Link>
 
           <p className="title">SERVICES</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>Mark Attandance</span>
-          </li>
+          <Link to="/faculty/mark-attendance" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Mark Attandance</span>
+            </li>
+          </Link>
           <li>
            
             <Link to="/faculty/modify-attendance" style={{ textDecoration: "none" }}>

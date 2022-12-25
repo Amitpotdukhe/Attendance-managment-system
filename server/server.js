@@ -19,8 +19,8 @@ import { protect } from "./middleware/authMiddleware.js";
 
 // app.use(protect);
 app.use("/api", facultyRoute);
-app.use("/api/student", studentRoute);
-app.use("/api/admin", adminRoute);
+app.use("/api", studentRoute);
+app.use("/api", adminRoute);
 
 // connectDB();
 
