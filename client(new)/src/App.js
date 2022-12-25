@@ -12,6 +12,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import MarkAttendance from "./components/markAttendance/MarkAttendance";
+import ModifyAtt from "./pages/modifyAtt/ModifyAtt";
 import StudentDashboard from "./pages/studentDashboard/StudentDashboard";
 import Datatable from "./components/datatable/Datatable";
 import AddFaculty from "./pages/addFaculty/AddFaculty";
@@ -59,7 +60,7 @@ function App() {
                             />
                             <Route
                                 path="modify-attendance"
-                                element={<Datatable />}
+                                element={<ModifyAtt />}
                             />
                         </Route>
 

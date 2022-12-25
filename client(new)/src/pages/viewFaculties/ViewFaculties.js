@@ -1,9 +1,7 @@
 import React from "react";
-import Table from "../../components/table/Table";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Card from "./Card";
 import "./viewFaculties.scss";
-import Datatable from "../../components/datatable/Datatable";
 import { Button, Grid, Paper, Typography } from "@mui/material";
 
 const faculties = [
@@ -17,13 +15,21 @@ const faculties = [
         name: "Abhishek Kinhekar",
         email: "sandesh.jain@bitwardha.ac.in",
         no: "+91 8976457634",
-        subjects: ["Blockchain Technology", "Full Stack Development lab"],
+        subjects: [
+            "Big Data Analytics",
+            "Big Data Analytics Lab",
+            "Data Structures",
+        ],
     },
     {
         name: "Amol Jumde",
         email: "sandesh.jain@bitwardha.ac.in",
         no: "+91 8976457634",
-        subjects: ["Blockchain Technology", "Full Stack Development lab"],
+        subjects: [
+            "Machine Learning",
+            "Machine Learning",
+            "programming in Java",
+        ],
     },
     {
         name: "Urvashi Pote",
@@ -63,12 +69,18 @@ const ViewFaculties = () => {
                                     <p>Computer Dept.</p>
                                     <p>{item.no}</p>
 
-                                    <p style={{ marginTop: "20px" }}>
+                                    <p
+                                        style={{
+                                            marginTop: "20px",
+                                            textDecoration: "underline",
+                                        }}
+                                    >
                                         Subjects Assigned:
                                     </p>
                                     <Grid container direction="column">
-                                        <p>Blockchain Technology</p>
-                                        <p>Full Stack Development lab</p>
+                                        {item.subjects.map((it) => {
+                                            return <p>{it}</p>;
+                                        })}
                                     </Grid>
                                     <Grid>
                                         <Button
@@ -94,9 +106,6 @@ const ViewFaculties = () => {
                             </Grid>
                         );
                     })}
-                    <Paper style={{ padding: "20px" }}>hii</Paper>
-                    <Paper style={{ padding: "20px" }}>hii</Paper>
-                    <Paper style={{ padding: "20px" }}>hii</Paper>
                 </Grid>
             </div>
         </div>
