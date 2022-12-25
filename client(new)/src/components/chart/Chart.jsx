@@ -20,16 +20,16 @@ const data = [
 const Chart = ({ aspect, title }) => {
   return (
     <div className="chart">
-      <div className="title"><label for="cars">Choose a semister:</label>
-      <select>
-        <optgroup >
-          <option value="volvo">1st Sem</option>
-          <option value="saab">2nd Sem</option>
-          <option value="saab">3rd Sem</option>
-          <option value="saab">4th Sem</option>
-        </optgroup>
-        
-      </select>
+      <div className="title">
+        {/* <label for="cars">Choose a semister:</label>
+        <select>
+          <optgroup >
+            <option value="volvo">1st Sem</option>
+            <option value="saab">2nd Sem</option>
+            <option value="saab">3rd Sem</option>
+            <option value="saab">4th Sem</option>
+          </optgroup>
+        </select> */}
         {title}
       </div>
       

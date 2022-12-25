@@ -6,7 +6,7 @@ const Analyze = () => {
     return (
         <>
             <div className="home">
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <div className="homeContainer">
                     <div className="widgets"></div>
 

@@ -52,7 +52,7 @@ const Sidebar = ({ isStudent = false }) => {
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <InsertChartIcon className="icon" />
-              <span>View Semisters</span>
+              <span>View Semesters</span>
             </li>
           </Link>
       </div>
@@ -97,7 +97,7 @@ const Sidebar = ({ isStudent = false }) => {
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <InsertChartIcon className="icon" />
-              <span>View Semisters</span>
+              <span>View Semesters</span>
             </li>
           </Link>
 
@@ -105,7 +105,7 @@ const Sidebar = ({ isStudent = false }) => {
           <Link to="/faculty/mark-attendance" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Mark Attandance</span>
+              <span>Mark Attendance</span>
             </li>
           </Link>
           <li>
@@ -113,7 +113,7 @@ const Sidebar = ({ isStudent = false }) => {
             <Link to="/faculty/modify-attendance" style={{ textDecoration: "none" }}>
             <li>
               <InsertChartIcon className="icon" />
-              <span>Modify Attandance</span>
+              <span>Modify Attendance</span>
             </li>
           </Link>
           </li>
@@ -149,7 +149,7 @@ const Sidebar = ({ isStudent = false }) => {
           {isStudent ? student() : faculty()}
           
 
-          <p className="title">SUBJECTS</p>
+          {/* <p className="title">SUBJECTS</p>
           {subjects.map((item) => {
             return(
             <Link to="/users" style={{ textDecoration: "none" }}>
@@ -159,7 +159,7 @@ const Sidebar = ({ isStudent = false }) => {
             </li>
               </Link>
             )
-          })}
+          })} */}
           
           
           

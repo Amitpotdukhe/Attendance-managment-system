@@ -48,7 +48,7 @@ export const userRows = [
         id: 1,
         username: "Snow",
         img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-        status: "Present",
+        status: "Safe",
         email: "1snow@gmail.com",
         age: 35,
     },
@@ -57,7 +57,7 @@ export const userRows = [
         username: "Jamie Lannister",
         img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         email: "2snow@gmail.com",
-        status: "passive",
+        status: "Not Safe",
         age: 42,
     },
     {

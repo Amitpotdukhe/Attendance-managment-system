@@ -7,12 +7,13 @@ import Accordions from "./Accordian";
 const StudentDashboard = () => {
     return (
         <div className="home">
-            <Sidebar />
+            {/* <Sidebar /> */}
             <div className="homeContainer">
                 <div className="widgets">
                     <Widget type="STUDENTS" />
                     <Widget type="FACULTY" />
                 </div>
+                
                 <div className="widgets">
                     <Accordions />
                 </div>

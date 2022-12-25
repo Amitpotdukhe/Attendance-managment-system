@@ -12,36 +12,40 @@ const Featured = () => {
         <h1 className="title">Total Attendance Today</h1>
         <MoreVertIcon fontSize="small" />
       </div>
+
       <div className="bottom">
+
         <div className="featuredChart">
           <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
         </div>
-        <p className="title">Total students present </p>
-        <p className="amount">420</p>
+
+        <p className="title positive">Total Students</p>
+        <p className="amount">69</p>
         
         <div className="summary">
           <div className="item">
-            <div className="itemTitle">Yesturday</div>
+            <div className="itemTitle">Total Absent Students</div>
             <div className="itemResult negative">
               <KeyboardArrowDownIcon fontSize="small"/>
-              <div className="resultAmount">510</div>
+              <div className="resultAmount">20</div>
             </div>
           </div>
-          <div className="item">
-            <div className="itemTitle">Last Week</div>
+          {/* <div className="item">
+            <div className="itemTitle"></div>
             <div className="itemResult positive">
               <KeyboardArrowUpOutlinedIcon fontSize="small"/>
               <div className="resultAmount">124</div>
             </div>
-          </div>
+          </div> */}
           <div className="item">
-            <div className="itemTitle">Last Month</div>
+            <div className="itemTitle">Total Present Students</div>
             <div className="itemResult positive">
               <KeyboardArrowUpOutlinedIcon fontSize="small"/>
-              <div className="resultAmount">343</div>
+              <div className="resultAmount">49</div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   );
