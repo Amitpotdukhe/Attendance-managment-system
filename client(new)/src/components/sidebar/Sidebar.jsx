@@ -119,7 +119,9 @@ const Sidebar = ({ isStudent = false }) => {
           </li>
           <li>
             <SettingsApplicationsIcon className="icon" />
-            <span>Attandance Analysis</span>
+            <Link to="/faculty/analyze-attendance" style={{ textDecoration: "none"}} >
+            <span>Attendance Analysis</span>
+            </Link>
           </li>
           <li>
             <SettingsApplicationsIcon className="icon" />

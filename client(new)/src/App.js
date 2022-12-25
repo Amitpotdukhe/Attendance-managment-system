@@ -62,6 +62,10 @@ function App() {
                                 path="modify-attendance"
                                 element={<ModifyAtt />}
                             />
+                            <Route
+                                path="analyze-attendance"
+                                element={<Single />}
+                            />
                         </Route>
 
                         <Route path="products">
