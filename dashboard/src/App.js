@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./layout/Login";
 import FacultyDashboard from "./layout/FacultyDashboard";
 import StudentDashboard from "./layout/StudentDashboard";
+import Login from "./layout/Login";
+
 import "./App.css";
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
                         path="/student-dashboard"
                         element={<StudentDashboard />}
                     />
+                    <Route path="/faculty/:id" element={<FacultyDashboard />} />
+                    <Route path="/student/:id" element={<StudentDashboard />} />
                 </Routes>
             </BrowserRouter>
         </div>
