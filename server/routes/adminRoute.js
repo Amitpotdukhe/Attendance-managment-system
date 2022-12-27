@@ -1,5 +1,7 @@
 import express from "express";
-import { protect } from "../middleware/authMiddleware.js";
+import {
+    protect
+} from "../middleware/authMiddleware.js";
 import db from "../config/db.js";
 
 const router = express.Router();
@@ -78,40 +80,40 @@ router.delete("/admin/delete-faculty/:id", async (req, res, next) => {
 
 // --------------------> Students Table Routes ----------------------------------->
 
-// router.post("/add-students", async (req, res, next) => {
-//     const data = req.body;
-//     console.log(data);
-//     await db.query(
-//         "INSERT into students SET ?",
-//         data,
-//         (err, result) => {
-//             if (err) {
-//                 next(new Error(err));
-//             } else {
-//                 res.status(200).json("Student added sucessfully");
-//             }
-//         }
-//     );
-// });
+router.post("/admin/add-students", async (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    await db.query(
+        "INSERT into students SET ?",
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Student added sucessfully");
+            }
+        }
+    );
+});
 
-// router.get("/get-students", async (req, res, next) => {
-//     const data = req.body;
-//     console.log(data);
-//     await db.query(
-//         "select * from students",
-//         data,
-//         (err, result) => {
-//             if (err) {
-//                 next(new Error(err));
-//             } else {
-//                 res.status(200).json(result);
-//             }
-//         }
-//     );
-// });
+router.get("/admin/get-students", async (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    await db.query(
+        "select * from students",
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json(result);
+            }
+        }
+    );
+});
 
-// router.put("/update-students/:id", async (req, res, next) => {
-//     const data = [req.body.ROLL_NUMBER, req.body.STUDENT_FIRST_NAME, req.body.STUDENT_LAST_NAME, req.body.STUDENT_EMAIL, req.body.id];
+// router.put("/update-students/:ROLL_NUMBER", async (req, res, next) => {
+//     const data = [req.body.STUDENT_FIRST_NAME, req.body.STUDENT_LAST_NAME, req.body.STUDENT_EMAIL, req.body.id];
 //     console.log(data);
 //     await db.query(
 //         "UPDATE students SET ROLL_NUMBER = ?, STUDENT_FIRST_NAME = ?, STUDENT_LAST_NAME = ?, STUDENT_EMAIL = ? where PRN = ?",
@@ -254,5 +256,84 @@ router.delete("/admin/delete-session/:id", async (req, res, next) => {
     );
 });
 
+// --------------------------------------> semester table routes ------------------------------------------>
 
+router.post("/admin/add-semester", async (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    await db.query("INSERT into semesters SET ?", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json("semester added sucessfully");
+        }
+    });
+});
+
+router.get("/admin/get-semester", async (req, res, next) => {
+    const data = req.body;
+    await db.query("select * from semesters", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+// ---------------------------> Subjects table routes -------------------------------------------->
+router.post("/admin/add-subjects", async (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    await db.query("INSERT into subjects SET ?", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json("subject added sucessfully");
+        }
+    });
+});
+
+router.get("/admin/get-subjects", async (req, res, next) => {
+    const data = req.body;
+    await db.query("select * from subjects", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.put("/admin/update-subjects/:id", async (req, res, next) => {
+    const data = [req.body.SUBJECT_NAME, req.params.id];
+    console.log(data);
+    await db.query(
+        "UPDATE subjects SET SUBJECT_NAME = ? where SUBJECT_ID = ?",
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Subject Updated sucessfully");
+            }
+        }
+    );
+});
+
+router.delete("/admin/delete-subjects/:id", async (req, res, next) => {
+    const data = [req.body.SUBJECT_NAME, req.params.id];
+    console.log(data);
+    await db.query(
+        "DELETE FROM subjects where SUBJECT_ID = " + req.params.id,
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Subject deleted sucessfully");
+            }
+        }
+    );
+});
 export default router;
