@@ -100,7 +100,7 @@ export default function Steper() {
             {activeStep === steps.length ? (
                 <React.Fragment>
                     <Typography sx={{ mt: 2, mb: 1 }}>
-                        All steps completed - you&apos;re finished
+                        Attendance Modified Succesfully!!
                     </Typography>
                     <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                         <Box sx={{ flex: "1 1 auto" }} />
@@ -137,7 +137,11 @@ export default function Steper() {
                             </Button>
                         )}
 
-                        <Button variant="contained" onClick={handleNext}>
+                        <Button
+                            style={{ marginTop: "20px" }}
+                            variant="contained"
+                            onClick={handleNext}
+                        >
                             {activeStep === steps.length - 1
                                 ? "Modify Attendance"
                                 : "Next"}

@@ -2,9 +2,10 @@ import express from "express";
 
 const router = express.Router();
 
-router.route("/login").get((req, res) => {
-    const { email, password } = req.body;
-    console.log({ email, password });
+router.post("/student/login", async (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    res.status(200).json("aysgfduytdf gbdasf uygveya ");
 });
 
 router.route("/signup").get((req, res) => {});

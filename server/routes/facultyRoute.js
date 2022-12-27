@@ -19,16 +19,19 @@ router.post("/faculty/login", async (req, res, next) => {
                 console.log(err);
                 next(new Error(err));
             } else {
-                localStorage.setItem("user", data);
+                localStorage.setItem("user", [data.email, data.role]);
                 res.status(200).json({ data: data, st: true });
             }
         }
     );
 });
 
-router.get("/faculty/curruser", (req, res) => {});
+router.get("/faculty/curruser", (req, res) => {
+    console.log("sda");
+});
 
 router.post("/faculty/mark-attendance", protect, (req, res, next) => {
+    const data = req.body;
     // var url_parts = url.parse(req.url);
     // console.log(url_parts);
     // console.log(url_parts.pathname.split("/")[1]);

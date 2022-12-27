@@ -43,7 +43,7 @@ function App() {
                         <Route path="faculty">
                             <Route index element={<List />} />
                             <Route path="add" element={<AddFaculty />} />
-                            <Route path=":userId" element={<Single />} />
+                            <Route path="add-subject" element={<Single />} />
                             <Route path="view" element={<ViewFaculties />} />
                             <Route
                                 path="new"
