@@ -254,5 +254,61 @@ router.delete("/admin/delete-session/:id", async (req, res, next) => {
     );
 });
 
+// ---------------------------> Subjects table routes -------------------------------------------->
+router.post("/admin/add-subjects", async (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    await db.query("INSERT into subjects SET ?", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json("subject added sucessfully");
+        }
+    });
+});
+
+router.get("/admin/get-subjects", async (req, res, next) => {
+    const data = req.body;
+    await db.query("select * from subjects", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.put("/admin/update-subjects/:id", async (req, res, next) => {
+    const data = [req.body.SUBJECT_NAME, req.params.id];
+    console.log(data);
+    await db.query(
+        "UPDATE subjects SET SUBJECT_NAME = ? where SUBJECT_ID = ?",
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Subject Updated sucessfully");
+            }
+        }
+    );
+});
+
+router.delete("/admin/delete-subjects/:id", async (req, res, next) => {
+    const data = [req.body.SUBJECT_NAME, req.params.id];
+    console.log(data);
+    await db.query(
+        "DELETE FROM subjects where SUBJECT_ID = " + req.params.id,
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Subject deleted sucessfully");
+            }
+        }
+    );
+});
+
 
 export default router;
