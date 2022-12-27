@@ -22,14 +22,19 @@ export default function App() {
 
     const handleSubmit = async () => {
         console.log(email, password, role);
+
         try {
             const req = await axios.post(`/api/${role}/login`, {
                 email,
                 password,
                 role,
             });
-            if (req) {
-                console.log("succes");
+
+            if (req.data.st) {
+                localStorage.setItem("user", [
+                    req.data.data.email,
+                    req.data.data.role,
+                ]);
                 if (role === "faculty") {
                     window.location.href = "/faculty-dashboard";
                 } else {
@@ -43,7 +48,6 @@ export default function App() {
             alert(err);
         }
     };
-
     return (
         <CssVarsProvider>
             <main>
