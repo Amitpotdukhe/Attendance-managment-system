@@ -30,7 +30,7 @@ export default function App() {
                 role,
             });
 
-            if (req.data.st) {
+            if (req.status) {
                 localStorage.setItem("user", [
                     req.data.data.email,
                     req.data.data.role,
