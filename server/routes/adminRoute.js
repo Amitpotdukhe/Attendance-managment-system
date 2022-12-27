@@ -32,15 +32,16 @@ router.get("/admin/get-faculty", async (req, res, next) => {
 
 router.put("/admin/update-faculty/:id", async (req, res, next) => {
     const data = [
+        req.body.FACULTY_EMAIL,
         req.body.FACULTY_FIRST_NAME,
         req.body.FACULTY_LAST_NAME,
+        req.body.FACULTY_PASSWORD,
         req.body.FACULTY_ROLE,
-        req.body.FACULTY_EMAIL,
         req.params.id,
     ];
     console.log(data);
     await db.query(
-        "UPDATE faculty SET FACULTY_FIRST_NAME = ?, FACULTY_LAST_NAME = ?, FACULTY_ROLE = ?, FACULTY_EMAIL = ? where FACULTY_ID = ?",
+        "UPDATE faculty SET FACULTY_EMAIL = ?, FACULTY_FIRST_NAME = ?, FACULTY_LAST_NAME = ?, FACULTY_PASSWORD = ? ,FACULTY_ROLE = ? where FACULTY_ID = ?",
         data,
         (err, result) => {
             if (err) {
@@ -54,10 +55,11 @@ router.put("/admin/update-faculty/:id", async (req, res, next) => {
 
 router.delete("/admin/delete-faculty/:id", async (req, res, next) => {
     const data = [
+        req.body.FACULTY_EMAIL,
         req.body.FACULTY_FIRST_NAME,
         req.body.FACULTY_LAST_NAME,
+        req.body.FACULTY_PASSWORD,
         req.body.FACULTY_ROLE,
-        req.body.FACULTY_EMAIL,
         req.params.id,
     ];
     console.log(data);
@@ -154,6 +156,7 @@ router.post("/admin/add-departments", async (req, res, next) => {
 });
 
 router.get("/admin/get-departments", async (req, res, next) => {
+    const data = req.body;
     await db.query("select * from departments", data, (err, result) => {
         if (err) {
             next(new Error(err));
@@ -194,5 +197,62 @@ router.delete("/admin/delete-departments/:id", async (req, res, next) => {
         }
     );
 });
+
+// ---------------------------> Session_ table routes -------------------------------------------->
+router.post("/admin/add-session", async (req, res, next) => {
+    const data = req.body;
+    console.log(data);
+    await db.query("INSERT into session_ SET ?", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json("session added sucessfully");
+        }
+    });
+});
+
+router.get("/admin/get-session", async (req, res, next) => {
+    const data = req.body;
+    await db.query("select * from session_", data, (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.put("/admin/update-session/:id", async (req, res, next) => {
+    const data = [req.body.SESSION_START_YEAR, req.body.SESSION_END_YEAR, req.params.id];
+    console.log(data);
+    await db.query(
+        "UPDATE session_ SET SESSION_START_YEAR = ?, SESSION_END_YEAR = ? where SESSION_ID = ?",
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Session Updated sucessfully");
+            }
+        }
+    );
+});
+
+router.delete("/admin/delete-session/:id", async (req, res, next) => {
+    const data = [req.body.SESSION_START_YEAR, req.body.SESSION_END_YEAR, req.params.id];
+    console.log(data);
+    await db.query(
+        "DELETE FROM session_ where SESSION_ID = " + req.params.id,
+        data,
+        (err, result) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Session deleted sucessfully");
+            }
+        }
+    );
+});
+
 
 export default router;
