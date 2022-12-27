@@ -14,12 +14,13 @@ router.post("/faculty/login", async (req, res, next) => {
     await db.query(
         `select FACULTY_ID,FACULTY_FIRST_NAME,FACULTY_LAST_NAME, FACULTY_ROLE,FACULTY_EMAIL  from faculty where faculty.FACULTY_EMAIL='${data[0]}'`,
         (err, result, fields) => {
+            console.log(result);
             if (err) {
                 console.log(err);
                 next(new Error(err));
             } else {
                 localStorage.setItem("user", data);
-                res.status(200).json(result);
+                res.status(200).json({ data: data, st: true });
             }
         }
     );
