@@ -5,7 +5,7 @@ const FacultyDashboard = (props) => {
     return (
         <>
             <h1>bhen ka faculty </h1>
-            {user}
+            <h1>{user}</h1>
         </>
     );
 };

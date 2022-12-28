@@ -10,12 +10,19 @@ const router = express.Router();
 
 router.post("/faculty/login", async (req, res, next) => {
     const data = req.body;
-    console.log(data);
+    let obj;
+
     await db.query(
         `select FACULTY_ID,FACULTY_FIRST_NAME,FACULTY_LAST_NAME, FACULTY_ROLE, FACULTY_PASSWORD, FACULTY_EMAIL  from faculty where faculty.FACULTY_EMAIL='${data[0]}'`,
+
         (err, result, fields) => {
-            console.log("result:", result);
-            if (err) {
+            obj = Object.values(JSON.parse(JSON.stringify(result)));
+
+            if (result.length === 0) {
+                res.status(200).json("Faculty doesn`t exist");
+            } else if (obj[0].FACULTY_PASSWORD !== data[1]) {
+                res.status(200).json("Wrong Password");
+            } else if (err) {
                 console.log(err);
                 next(new Error(err));
             } else {

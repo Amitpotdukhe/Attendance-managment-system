@@ -24,28 +24,26 @@ export default function App() {
         console.log(email, password, role);
 
         try {
-            const req = await axios.post(`/api/${role}/login`, {
+            const req = await axios.post(`/api/${role}/login`, [
                 email,
                 password,
                 role,
-            });
+            ]);
 
             if (req.status) {
-                localStorage.setItem("user", [
-                    req.data.data.email,
-                    req.data.data.role,
-                ]);
+                localStorage.setItem("user", req.data.data);
                 if (role === "faculty") {
                     window.location.href = "/faculty-dashboard";
                 } else {
                     window.location.href = "/student-dashboard";
                 }
             } else {
-                console.log("failed");
+                console.log("failed:", req);
                 alert("failed");
             }
         } catch (err) {
-            alert(err);
+            alert("Login details incorrect");
+            console.log(err);
         }
     };
     return (
