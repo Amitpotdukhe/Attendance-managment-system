@@ -1,27 +1,69 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import FacultyDashboard from "./layout/FacultyDashboard";
-import StudentDashboard from "./layout/StudentDashboard";
-import Login from "./layout/Login";
 
+import SideBar from "./components/SideBar/SideBar";
+
+import WelcomeScreen from "./pages/WelcomeScreen";
+import ManageSession from "./pages/ManageSession";
+import ManageDepartment from "./pages/ManageDepartment";
+import ManageSemester from "./pages/ManageSemester";
+import ManageSubjects from "./pages/ManageSubjects";
+import ManageFaculty from "./pages/ManageFaculty";
+import ManageStudents from "./pages/ManageStudents";
+
+import StudentDashboard from "./layout/StudentDashboard";
+
+import Login from "./layout/Login";
 import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route
-                        path="/faculty-dashboard"
-                        element={<FacultyDashboard />}
-                    />
-                    <Route
-                        path="/student-dashboard"
-                        element={<StudentDashboard />}
-                    />
-                    <Route path="/faculty/:id" element={<FacultyDashboard />} />
-                    <Route path="/student/:id" element={<StudentDashboard />} />
-                </Routes>
+                {window.location.pathname !== "/" && (
+                    <>
+                        <SideBar />
+                        <Navbar />
+                    </>
+                )}
+
+                <div style={{ margin: "80px 20px 0 20px" }}>
+                    <Routes>
+                        <Route exact path="/" element={<Login />} />
+                        <Route path="faculty-dashboard">
+                            <Route index element={<WelcomeScreen />} />
+                            <Route
+                                path="manageSession"
+                                element={<ManageSession />}
+                            />
+                            <Route
+                                path="manageDepartment"
+                                element={<ManageDepartment />}
+                            />
+                            <Route
+                                path="manageSemester"
+                                element={<ManageSemester />}
+                            />
+                            <Route
+                                path="manageSubjects"
+                                element={<ManageSubjects />}
+                            />
+                            <Route
+                                path="manageFaculty"
+                                element={<ManageFaculty />}
+                            />
+                            <Route
+                                path="manageStudents"
+                                element={<ManageStudents />}
+                            />
+                        </Route>
+
+                        <Route
+                            path="student-dashboard"
+                            element={<StudentDashboard />}
+                        />
+                    </Routes>
+                </div>
             </BrowserRouter>
         </div>
     );
