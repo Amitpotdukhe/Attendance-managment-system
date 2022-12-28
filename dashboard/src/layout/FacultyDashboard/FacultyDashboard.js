@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useParams} from "react-router-dom";
+import SideBar from "../../components/SideBar/SideBar";
 import React from 'react';
 
 const FacultyDashboard = () => {
@@ -6,7 +7,8 @@ const FacultyDashboard = () => {
   
     return (
         <div>
-            Faculty Id: {id} 
+            <SideBar id={id}/>
+            Faculty Id: {id}
         </div>
     )
 }
