@@ -19,9 +19,15 @@ router.post("/faculty/login", async (req, res, next) => {
             obj = Object.values(JSON.parse(JSON.stringify(result)));
 
             if (result.length === 0) {
-                res.status(200).json("Faculty doesn`t exist");
+                res.status(200).json({
+                    message: "Faculty doesn`t exist",
+                    status: false,
+                });
             } else if (obj[0].FACULTY_PASSWORD !== data[1]) {
-                res.status(200).json("Wrong Password");
+                res.status(200).json({
+                    message: "Wrong Password",
+                    status: false,
+                });
             } else if (err) {
                 console.log(err);
                 next(new Error(err));

@@ -32,7 +32,7 @@ export default function App() {
                 role,
             ]);
 
-            if (req.status) {
+            if (req.status && req.data.data.length !== 0) {
                 localStorage.setItem("user", req.data.data);
                 localStorage.setItem("isLoggedIn", true);
                 if (role === "faculty") {
@@ -81,6 +81,7 @@ export default function App() {
                             type="email"
                             placeholder="xyz@bitwardha.ac.in"
                             label="Email"
+                            required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -89,6 +90,7 @@ export default function App() {
                             type="password"
                             placeholder="password"
                             label="Password"
+                            required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
@@ -97,6 +99,7 @@ export default function App() {
                             type="role"
                             placeholder="Role (faculty, student, hod)"
                             label="Role"
+                            required
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
                         />
@@ -110,7 +113,11 @@ export default function App() {
                             <Option value={role}>Faculty</Option>
                         </Select>
 
-                        <Button sx={{ mt: 1 }} onClick={() => handleSubmit()}>
+                        <Button
+                            sx={{ mt: 1 }}
+                            type="submit"
+                            onClick={() => handleSubmit()}
+                        >
                             Log in
                         </Button>
                     </Sheet>

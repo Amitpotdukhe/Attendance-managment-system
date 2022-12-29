@@ -246,8 +246,7 @@ export default function SideBar() {
                 variant="permanent"
                 anchor="left"
             >
-                <Toolbar />
-                <Divider />
+                <Divider style={{ marginTop: "20px" }} />
                 <Grid container justifyContent="center">
                     <Typography variant="h6">HOD</Typography>
                 </Grid>
