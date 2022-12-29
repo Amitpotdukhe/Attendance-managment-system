@@ -4,16 +4,24 @@ import WelcomeScreen from "./pages/WelcomeScreen";
 import ManageSession from "./pages/ManageSession";
 import ManageDepartment from "./pages/ManageDepartment";
 import ManageSemester from "./pages/ManageSemester";
-import ManageSubjects from "./pages/ManageSubjects";
-import ManageFaculty from "./pages/ManageFaculty";
+import ManageSubjects from "./pages/manageSubjects/ManageSubjects";
+import ManageFaculty from "./pages/faculties/ManageFaculty";
 import ManageStudents from "./pages/ManageStudents";
 import StudentDashboard from "./layout/StudentDashboard";
 import Login from "./layout/Login";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import { useEffect } from "react";
 
 function App() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            window.location.href = "/";
+        }
+    }, []);
+
     return (
         <div className="App">
             <BrowserRouter>

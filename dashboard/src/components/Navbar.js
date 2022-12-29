@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import BasicMenu from "./Menu";
 import { Button, Grid } from "@mui/material";
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const Navbar = () => {
     return (
@@ -14,6 +14,7 @@ const Navbar = () => {
                 sx={{
                     width: `calc(100% - ${drawerWidth}px)`,
                     ml: `${drawerWidth}px`,
+                    height: "55px",
                 }}
             >
                 <Toolbar>

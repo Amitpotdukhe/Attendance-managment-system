@@ -42,7 +42,7 @@ export default function BasicMenu() {
                 <MenuItem
                     onClick={() => {
                         handleClose();
-                        localStorage.setItem("isLoggedIn", false);
+                        window.location.href = "/";
                     }}
                 >
                     Logout
