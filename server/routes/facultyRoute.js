@@ -43,17 +43,36 @@ router.get("/faculty/curruser", (req, res) => {
     console.log("sda");
 });
 
-router.post("/faculty/mark-attendance", protect, (req, res, next) => {
+router.post("/faculty/mark-attendance", async (req, res, next) => {
     const data = req.body;
-    // var url_parts = url.parse(req.url);
-    // console.log(url_parts);
-    // console.log(url_parts.pathname.split("/")[1]);
-    // const data = req.body;
-    // console.log(data);
-    // const x = localStorage.getItem("user").split(",");
-    // console.log(x[0]);
 
-    res.status(200).json("Marked attendance succesfully!!");
+    await db.query(
+        `insert into attendance (ATTENDANCE_ID, STUDENT_REF_ID, SESSION_SEMESTER_DEPARTMENT_REF_ID, FACULTY_SUBJECT_REF_ID, LECTURE_DATE, ATTENDANCE_STATUS ) values (?, ?, ?, ?, ?, ?);`,
+        data,
+        (err, result, fields) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                res.status(200).json("Attendance added sucessfully");
+            }
+        }
+    );
+});
+
+router.get("/faculty/get-att", async (req, res, next) => {
+    const id = "1946491245004";
+
+    await db.query(
+        "select * from attendance where STUDENT_REF_ID = 1946491245004",
+        (err, result, fields) => {
+            if (err) {
+                next(new Error(err));
+            } else {
+                console.log(result);
+                res.status(200).json(result);
+            }
+        }
+    );
 });
 
 // --------------------> Subject Table Routes ----------------------------------->
@@ -62,7 +81,7 @@ router.post("/faculty/add-subjects", async (req, res, next) => {
     const data = req.body;
     console.log(data);
     await db.query(
-        "INSERT into subjects SET ?",
+        "INSERT into subjects (SUBJECT_ID, SUBJECT_NAME) values (?, ?);",
         data,
         (err, result, fields) => {
             if (err) {
