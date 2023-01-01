@@ -72,6 +72,38 @@ const Widget = ({ type }) => {
         ),
       };
       break;
+    case "CURRENT_SEM":
+      data = {
+        title: "7th semister(Average Attendance %)",
+        amount: 87,
+        link: "See details",
+        icon: (
+          <AccountBalanceWalletOutlinedIcon
+            className="icon"
+            style={{
+              backgroundColor: "rgba(128, 0, 128, 0.2)",
+              color: "purple",
+            }}
+          />
+        ),
+      };
+      break;
+    case "CURRENT_SUB":
+      data = {
+        title: "subjects",
+        amount: 6,
+        link: "See details",
+        icon: (
+          <MonetizationOnOutlinedIcon
+            className="icon"
+            style={{
+              backgroundColor: "rgba(128, 0, 128, 0.2)",
+              color: "purple",
+            }}
+          />
+        ),
+      };
+      break;
     default:
       break;
   }

@@ -7,7 +7,7 @@ import ManageSemester from "./pages/ManageSemester";
 import ManageSubjects from "./pages/manageSubjects/ManageSubjects";
 import ManageFaculty from "./pages/faculties/ManageFaculty";
 import ManageStudents from "./pages/ManageStudents";
-import StudentDashboard from "./layout/StudentDashboard";
+import StudentDashboard from "./pages/studentDashboard/StudentDashboard";
 import Login from "./layout/Login";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -21,16 +21,18 @@ function App() {
             window.location.href = "/";
         }
     }, []);
-
+    console.log(window.location.pathname.split("/")[1]);
     return (
         <div className="App">
             <BrowserRouter>
-                {window.location.pathname !== "/" && (
+                {window.location.pathname.split("/")[1] === "student" ? (
+                    <Navbar />
+                ) : window.location.pathname !== "/" ? (
                     <>
                         <SideBar />
                         <Navbar />
                     </>
-                )}
+                ) : null}
                 {isLoggedIn && (
                     <div style={{ margin: "80px 20px 0 20px" }}>
                         <Routes>
@@ -64,7 +66,7 @@ function App() {
                             </Route>
 
                             <Route
-                                path="student-dashboard"
+                                path="student/dashboard"
                                 element={<StudentDashboard />}
                             />
                         </Routes>

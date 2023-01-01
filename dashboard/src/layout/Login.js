@@ -38,7 +38,7 @@ export default function App() {
                 if (role === "faculty") {
                     window.location.href = "/faculty-dashboard";
                 } else {
-                    window.location.href = "/student-dashboard";
+                    window.location.href = "/student/dashboard";
                 }
             } else {
                 console.log("failed:", req);

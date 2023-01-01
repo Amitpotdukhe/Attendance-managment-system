@@ -28,6 +28,8 @@ router.post("/student/login", async (req, res, next) => {
     );
 });
 
+router.get("/student/get-info/:id");
+
 router.route("/signup").get((req, res) => {});
 
 export default router;

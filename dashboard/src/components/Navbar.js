@@ -4,9 +4,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import BasicMenu from "./Menu";
 import { Button, Grid } from "@mui/material";
-const drawerWidth = 220;
 
 const Navbar = () => {
+    const user = localStorage.getItem("user").split(",");
+    const drawerWidth = user[2] === "student" ? 0 : 220;
     return (
         <div>
             <AppBar
@@ -25,7 +26,9 @@ const Navbar = () => {
                     >
                         <Button style={{ color: "white" }}>
                             <Typography variant="h6" noWrap component="div">
-                                Dashboard
+                                {user[2] === "student"
+                                    ? "Logged in as student"
+                                    : "Faculty dashboard"}
                             </Typography>
                         </Button>
                         <BasicMenu />

@@ -36,6 +36,13 @@ const facultyRoutes = [
 
 export default function SideBar() {
     const loggedUser = localStorage.getItem("user").split(",");
+
+    const loginDetails = [
+        { x: loggedUser[0], path: "" },
+        { x: loggedUser[2], path: "" },
+        { x: "Logout", path: "/" },
+    ];
+
     const hodBar = () => {
         return (
             <>
@@ -91,13 +98,13 @@ export default function SideBar() {
                                 }}
                             >
                                 <ListItemButton>
-                                    {/* <ListItemIcon>
+                                    <ListItemIcon>
                                         {index % 2 === 0 ? (
                                             <InboxIcon />
                                         ) : (
                                             <MailIcon />
                                         )}
-                                    </ListItemIcon> */}
+                                    </ListItemIcon>
                                     <ListItemText primary={text.name} />
                                 </ListItemButton>
                             </Link>
@@ -123,15 +130,50 @@ export default function SideBar() {
                 variant="permanent"
                 anchor="left"
             >
-                {hodBar()}
-                {facultyBar()}
-                {/* {loggedUser[2] === "hod" ? (
-                    hodBar()
-                ) : loggedUser[2] === "faculty" ? (
-                    facultyBar()
-                ) : (
-                    <h3>yes</h3>
-                )} */}
+                {loggedUser[2] === "hod" ? hodBar() : facultyBar()}
+
+                <Divider />
+                <Grid container justifyContent="center">
+                    <Typography variant="h6">User</Typography>
+                </Grid>
+                <Divider />
+                <List>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={loggedUser[0]} />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <MailIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={loggedUser[2]} />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <Link
+                            to="/"
+                            style={{
+                                textDecoration: "none",
+                                color: "grey",
+                            }}
+                            onClick={() => {
+                                window.location.href = "/";
+                            }}
+                        >
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <InboxIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Logout" />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                </List>
             </Drawer>
         </Box>
     );
