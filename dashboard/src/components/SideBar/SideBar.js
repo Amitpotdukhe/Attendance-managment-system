@@ -28,7 +28,7 @@ const hodRoutes = [
 ];
 
 const facultyRoutes = [
-    { name: "Mark Attendance", path: "/faculty-dashboard/manageSession" },
+    { name: "Mark Attendance", path: "/faculty-dashboard/mark-attendance" },
     { name: "Modify Attendance", path: "/faculty-dashboard/manageDepartment" },
     { name: "Attendance Analysis", path: "/faculty-dashboard/manageSemester" },
     { name: "Generate Report", path: "/faculty-dashboard/manageSubjects" },

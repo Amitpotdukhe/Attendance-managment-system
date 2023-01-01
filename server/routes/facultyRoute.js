@@ -66,31 +66,37 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
             id: "1001",
             subject: "Blockchain Technology",
             faculty: "Sandesh Jain",
+            email: "sandesh.jain@bitwardha.ac.in",
         },
         {
             id: "1002",
             subject: "Big Data Analytics",
             faculty: "Abhishek Kinhekar",
+            email: "abhishek.kinhekar@bitwardha.ac.in",
         },
         {
             id: "1003",
             subject: "Software Engineering",
             faculty: "Sheetal Kale",
+            email: "sheetal.kale@bitwardha.ac.in",
         },
         {
             id: "1004",
             subject: "Cloud Computing",
             faculty: "Akshay Saraf",
+            email: "akshay.saraf@bitwardha.ac.in",
         },
         {
             id: "1005",
             subject: "System Administration",
             faculty: "Ajay Sahu",
+            email: "ajay.sahu@bitwardha.ac.in",
         },
         {
             id: "1006",
             subject: "Full Stack Development",
             faculty: "Aihtesham Kazi",
+            email: "aihtesham.kazi@bitwardha.ac.in",
         },
     ];
 
@@ -125,7 +131,7 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
                             (pDays.length / (pDays.length + aDays.length)) *
                             100,
                     };
-                    subData.push(currSub);
+                    subData += currSub;
                     console.log(currSub);
                 }
             }

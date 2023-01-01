@@ -11,6 +11,7 @@ import StudentDashboard from "./pages/studentDashboard/StudentDashboard";
 import Login from "./layout/Login";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import MarkAttendance from "./pages/markAttendance/MarkAttendance";
 import { useEffect } from "react";
 
 function App() {
@@ -62,6 +63,10 @@ function App() {
                                 <Route
                                     path="manageStudents"
                                     element={<ManageStudents />}
+                                />
+                                <Route
+                                    path="mark-attendance"
+                                    element={<MarkAttendance />}
                                 />
                             </Route>
 

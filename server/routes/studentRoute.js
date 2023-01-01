@@ -28,7 +28,17 @@ router.post("/student/login", async (req, res, next) => {
     );
 });
 
-router.get("/student/get-info/:id");
+router.get("/student/get-students/", async (req, res, next) => {
+    await db.query("select * from students", (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+
+            res.status(200).json({ data: data });
+        }
+    });
+});
 
 router.route("/signup").get((req, res) => {});
 
