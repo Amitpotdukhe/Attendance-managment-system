@@ -2,6 +2,11 @@ import axios from 'axios';
 import './App.css';
 import { useState } from 'react';
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -23,6 +28,17 @@ function Ocr() {
 
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(false);
+
+  const [subject, setSubject] = useState('');
+  const [type, setType] = useState('');
+
+  const handleChangeType = (e) => {
+    setType(e.target.value);
+  };
+
+  const handleChange = (e) => {
+    setSubject(e.target.value);
+  };
 
   const handleSubmit = async(event) => {
     event.preventDefault()
@@ -106,8 +122,35 @@ function Ocr() {
 
   return (
     <div className="ocr-container">
+      <div>
+        <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-filled-label">Subjects</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="demo-simple-select-filled"
+            value={subject}
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Big Data Analytics</MenuItem>
+            <MenuItem value={20}>Big Data Analytics</MenuItem>
+            <MenuItem value={30}>Object Oriented Programming</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-filled-label">Lecture Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="demo-simple-select-filled"
+            value={type}
+            onChange={handleChangeType}
+          >
+            <MenuItem value={10}>Theory</MenuItem>
+            <MenuItem value={20}>Lab</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
       <div className="table-container">
-      
       <TableContainer style={{ width: "auto" }} component={Paper}>
         <Table sx={{ maxWidth: 650 }} aria-label="simple table">
           <TableHead>
