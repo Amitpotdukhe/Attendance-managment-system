@@ -15,7 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-function App() {
+function Ocr() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
@@ -223,4 +223,4 @@ function App() {
   );
 }
 
-export default App;
+export default Ocr;

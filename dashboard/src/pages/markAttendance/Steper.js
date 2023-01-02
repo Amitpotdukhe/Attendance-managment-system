@@ -9,6 +9,7 @@ import Table from "./Table";
 import Datepicker from "./Datepicker";
 import { Grid } from "@mui/material";
 import Card from "./Card";
+import Ocr from "../../ocr_api/Ocr";
 
 const steps = ["Choose date ", "Update attendance"];
 const subjects = [
@@ -17,6 +18,7 @@ const subjects = [
 ];
 
 export default function Steper() {
+    const [show, setShow] = React.useState("0");
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 
@@ -110,7 +112,31 @@ export default function Steper() {
             ) : (
                 <React.Fragment>
                     <Typography sx={{ mt: 2, mb: 1 }}></Typography>
-                    {activeStep === 0 ? <Datepicker /> : <Table />}
+                    {activeStep === 0 ? (
+                        <Datepicker />
+                    ) : (
+                        <div>
+                            <Grid container justifyContent="center">
+                                <Button
+                                    variant="contained"
+                                    onClick={() => setShow("2")}
+                                    style={{ margin: "30px" }}
+                                >
+                                    Mark via image
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    onClick={() => setShow("1")}
+                                    style={{ margin: "30px" }}
+                                >
+                                    Mark manually
+                                </Button>
+                            </Grid>
+
+                            {show === "1" ? <Table /> : show === "2" && <Ocr />}
+                        </div>
+                    )}
+
                     <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                         <Button
                             color="inherit"

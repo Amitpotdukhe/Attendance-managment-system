@@ -44,6 +44,7 @@ const facultySubjectIds = [
 ];
 
 const MarkAttendance = () => {
+    const [show, setShow] = useState(0);
     const [students, setStudents] = useState();
     const [date, setDate] = useState(new Date());
     useEffect(() => {

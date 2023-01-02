@@ -4,6 +4,7 @@ import db from "../config/db.js";
 import { LocalStorage } from "node-localstorage";
 
 var localStorage = new LocalStorage("./users");
+var localStorage2 = new LocalStorage("./users/facSubAna");
 const router = express.Router();
 
 router.post("/faculty/login", async (req, res, next) => {
@@ -59,6 +60,7 @@ router.post("/faculty/mark-attendance", async (req, res, next) => {
 
 router.get("/faculty/get-att/:id", async (req, res, next) => {
     const id = req.params.id;
+    localStorage2.clear;
     let allData;
     var subData = [];
 
@@ -100,6 +102,7 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
             email: "aihtesham.kazi@bitwardha.ac.in",
         },
     ];
+
     let currSub;
     facultySubjectIds.forEach(async (it) => {
         await db.query(
@@ -120,32 +123,25 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
                             aDays.push(item.LECTURE_DATE);
                         }
                     });
-                    currSub = {
-                        subject: it.subject,
-                        faculty: it.faculty,
-                        totalDays: allData.length,
-                        totalPresentDays: pDays.length,
-                        totalAbsentDays: aDays.length,
-                        presentDays: pDays,
-                        absentDays: aDays,
-                        avgAttendance:
-                            (pDays.length / (pDays.length + aDays.length)) *
-                            100,
-                    };
+                    currSub = [
+                        "start",
+                        it.subject,
+                        it.faculty,
+                        allData.length,
+                        pDays.length,
+                        aDays.length,
+                        pDays,
+                        aDays,
 
-                    subData.push({
-                        subject: it.subject,
-                        faculty: it.faculty,
-                        totalDays: allData.length,
-                        totalPresentDays: pDays.length,
-                        totalAbsentDays: aDays.length,
-                        presentDays: pDays,
-                        absentDays: aDays,
-                        avgAttendance:
-                            (pDays.length / (pDays.length + aDays.length)) *
-                            100,
-                    });
-                    // console.log(currSub);
+                        (pDays.length / (pDays.length + aDays.length)) * 100,
+                        "end",
+                    ];
+
+                    subData.push(currSub);
+                    localStorage2.setItem(
+                        "att",
+                        localStorage2.getItem("att") + currSub
+                    );
                 }
             }
         );
@@ -239,18 +235,6 @@ router.get("/faculty/subject-analysis/:facSubId", async (req, res, next) => {
         console.log(newObj);
         console.log(newObj.length);
     });
-
-    // await db.query(
-    //     `select * from attendance where FACULTY_SUBJECT_REF_ID = ?`,
-    //     id,
-    //     (err, result, fields) => {
-    //         if (err) {
-    //             next(new Error(err));
-    //         } else {
-    //             let newObj = Object.values(JSON.parse(JSON.stringify(result)));
-    //         }
-    //     }
-    // );
 });
 
 router.post("/hod/login", async (req, res, next) => {

@@ -4,6 +4,7 @@ import { LocalStorage } from "node-localstorage";
 
 const router = express.Router();
 var localStorage = new LocalStorage("./users/student");
+
 router.post("/student/login", async (req, res, next) => {
     const data = req.body;
     let obj;
@@ -39,7 +40,5 @@ router.get("/student/get-students/", async (req, res, next) => {
         }
     });
 });
-
-router.route("/signup").get((req, res) => {});
 
 export default router;

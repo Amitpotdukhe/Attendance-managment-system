@@ -133,7 +133,7 @@ export default function SideBar() {
                 variant="permanent"
                 anchor="left"
             >
-                {loggedUser[2] === "HOD" ? (
+                {loggedUser[2] === "hod" ? (
                     <>
                         {hodBar()} {facultyBar()}{" "}
                     </>
