@@ -1,0 +1,13 @@
+.ocr-container{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.table-container{
+  display: flex;
+  gap: 20px;
+}
