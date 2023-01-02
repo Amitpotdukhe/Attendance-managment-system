@@ -10,10 +10,10 @@ import Datepicker from "./Datepicker";
 import { Grid } from "@mui/material";
 import Card from "./Card";
 
-const steps = ["Choose date ", "Update attendance"];
+const steps = ["Select Subject", "Choose date ", "Modify attendance"];
 const subjects = [
-    { subject: "Cloud Computing", faculty: "ABC" },
-    { subject: "Cloud Computing Lab", faculty: "ABC" },
+    { subject: "Big Data Analytics Lab", faculty: "Abhishek Kinhekar" },
+    { subject: "Big Data Analytics", faculty: "Abhishek Kinhekar" },
 ];
 
 export default function Steper() {
@@ -77,7 +77,7 @@ export default function Steper() {
     };
 
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "90%" }}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {};
@@ -100,7 +100,7 @@ export default function Steper() {
             {activeStep === steps.length ? (
                 <React.Fragment>
                     <Typography sx={{ mt: 2, mb: 1 }}>
-                        All steps completed - you&apos;re finished
+                        Attendance Modified Succesfully!!
                     </Typography>
                     <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                         <Box sx={{ flex: "1 1 auto" }} />
@@ -110,7 +110,13 @@ export default function Steper() {
             ) : (
                 <React.Fragment>
                     <Typography sx={{ mt: 2, mb: 1 }}></Typography>
-                    {activeStep === 0 ? <Datepicker /> : <Table />}
+                    {activeStep === 0 ? (
+                        selectSubjects()
+                    ) : activeStep === 1 ? (
+                        <Datepicker />
+                    ) : (
+                        <Table />
+                    )}
                     <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                         <Button
                             color="inherit"
@@ -131,8 +137,14 @@ export default function Steper() {
                             </Button>
                         )}
 
-                        <Button onClick={handleNext} variant="contained">
-                            {activeStep === steps.length - 1 ? "Mark" : "Next"}
+                        <Button
+                            style={{ marginTop: "20px" }}
+                            variant="contained"
+                            onClick={handleNext}
+                        >
+                            {activeStep === steps.length - 1
+                                ? "Modify Attendance"
+                                : "Next"}
                         </Button>
                     </Box>
                 </React.Fragment>

@@ -60,7 +60,8 @@ router.post("/faculty/mark-attendance", async (req, res, next) => {
 router.get("/faculty/get-att/:id", async (req, res, next) => {
     const id = req.params.id;
     let allData;
-    var subData = [{}];
+    var subData = [];
+
     const facultySubjectIds = [
         {
             id: "1001",
@@ -99,7 +100,7 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
             email: "aihtesham.kazi@bitwardha.ac.in",
         },
     ];
-
+    let currSub;
     facultySubjectIds.forEach(async (it) => {
         await db.query(
             `select * from attendance where STUDENT_REF_ID = ? and FACULTY_SUBJECT_REF_ID = ?;`,
@@ -119,7 +120,7 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
                             aDays.push(item.LECTURE_DATE);
                         }
                     });
-                    let currSub = {
+                    currSub = {
                         subject: it.subject,
                         faculty: it.faculty,
                         totalDays: allData.length,
@@ -131,8 +132,20 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
                             (pDays.length / (pDays.length + aDays.length)) *
                             100,
                     };
-                    subData += currSub;
-                    console.log(currSub);
+
+                    subData.push({
+                        subject: it.subject,
+                        faculty: it.faculty,
+                        totalDays: allData.length,
+                        totalPresentDays: pDays.length,
+                        totalAbsentDays: aDays.length,
+                        presentDays: pDays,
+                        absentDays: aDays,
+                        avgAttendance:
+                            (pDays.length / (pDays.length + aDays.length)) *
+                            100,
+                    });
+                    // console.log(currSub);
                 }
             }
         );
@@ -141,42 +154,131 @@ router.get("/faculty/get-att/:id", async (req, res, next) => {
     res.status(200).json(subData);
 });
 
-router.get("/faculty/subject/", async (req, res, next) => {
+router.get(
+    "/faculty/subject/:studentId/:facSubRefId",
+    async (req, res, next) => {
+        const prn = req.params.studentId;
+        const facSubRefId = req.params.facSubRefId;
+
+        await db.query(
+            "select * from attendance where STUDENT_REF_ID = ? and FACULTY_SUBJECT_REF_ID = ?",
+            [prn, facSubRefId],
+            (err, result, fields) => {
+                if (err) {
+                    next(new Error(err));
+                } else {
+                    console.log(result);
+                    const data = Object.values(
+                        JSON.parse(JSON.stringify(result))
+                    );
+                    let p = 0;
+                    let pDays = [];
+                    let aDays = [];
+                    let a = 0;
+                    data.forEach((item) => {
+                        if (item.ATTENDANCE_STATUS === "1") {
+                            p++;
+                            pDays.push(item.LECTURE_DATE);
+                        } else {
+                            a++;
+                            aDays.push(item.LECTURE_DATE);
+                        }
+                    });
+                    let avg = (p / (p + a)) * 100;
+                    const calculatedData = {
+                        totalDays: result.length,
+                        totalPresentDays: p,
+                        totalAbsentDays: a,
+                        presentDays: pDays,
+                        absentDays: aDays,
+                        avgAttendance: avg,
+                    };
+
+                    res.status(200).json({
+                        data: result,
+                        calculatedData: calculatedData,
+                    });
+                }
+            }
+        );
+    }
+);
+
+router.get("/faculty/subject-analysis/:facSubId", async (req, res, next) => {
+    const id = req.params.facSubId;
+    let allStudents;
+    let newObj = [];
+
+    await db.query("select * from students", (err, result) => {
+        if (err) {
+            next(new Error(err));
+        } else {
+            allStudents = Object.values(JSON.parse(JSON.stringify(result)));
+
+            allStudents.forEach((item) => {
+                let curr = [];
+                db.query(
+                    "select * from attendance where STUDENT_REF_ID = ? and FACULTY_SUBJECT_REF_ID = ?",
+                    [item.PRN, id],
+                    (err, result1) => {
+                        if (err) {
+                            next(new Error(err));
+                        } else {
+                            let x = Object.values(
+                                JSON.parse(JSON.stringify(result1))
+                            );
+                            newObj.push(x);
+                            // console.log(x);
+                        }
+                    }
+                );
+
+                // newObj.push(curr);
+            });
+        }
+        console.log(newObj);
+        console.log(newObj.length);
+    });
+
+    // await db.query(
+    //     `select * from attendance where FACULTY_SUBJECT_REF_ID = ?`,
+    //     id,
+    //     (err, result, fields) => {
+    //         if (err) {
+    //             next(new Error(err));
+    //         } else {
+    //             let newObj = Object.values(JSON.parse(JSON.stringify(result)));
+    //         }
+    //     }
+    // );
+});
+
+router.post("/hod/login", async (req, res, next) => {
+    const data = req.body;
+    let obj;
+
     await db.query(
-        "select * from attendance where STUDENT_REF_ID = 1946491245054 and FACULTY_SUBJECT_REF_ID = 1004",
+        `select FACULTY_ID,FACULTY_FIRST_NAME,FACULTY_LAST_NAME, FACULTY_ROLE, FACULTY_PASSWORD, FACULTY_EMAIL  from faculty where faculty.FACULTY_EMAIL='${data[0]}'`,
+
         (err, result, fields) => {
-            if (err) {
+            obj = Object.values(JSON.parse(JSON.stringify(result)));
+
+            if (result.length === 0) {
+                res.status(200).json({
+                    message: "Faculty doesn`t exist",
+                    status: false,
+                });
+            } else if (obj[0].FACULTY_PASSWORD !== data[1]) {
+                res.status(200).json({
+                    message: "Wrong Password",
+                    status: false,
+                });
+            } else if (err) {
+                console.log(err);
                 next(new Error(err));
             } else {
-                console.log(result);
-                const data = Object.values(JSON.parse(JSON.stringify(result)));
-                let p = 0;
-                let pDays = [];
-                let aDays = [];
-                let a = 0;
-                data.forEach((item) => {
-                    if (item.ATTENDANCE_STATUS === "1") {
-                        p++;
-                        pDays.push(item.LECTURE_DATE);
-                    } else {
-                        a++;
-                        aDays.push(item.LECTURE_DATE);
-                    }
-                });
-                let avg = (p / (p + a)) * 100;
-                const calculatedData = {
-                    totalDays: result.length,
-                    totalPresentDays: p,
-                    totalAbsentDays: a,
-                    presentDays: pDays,
-                    absentDays: aDays,
-                    avgAttendance: avg,
-                };
-
-                res.status(200).json({
-                    data: result,
-                    calculatedData: calculatedData,
-                });
+                localStorage.setItem("user", data);
+                res.status(200).json({ data: data, status: true });
             }
         }
     );

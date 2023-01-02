@@ -35,7 +35,7 @@ export default function App() {
             if (req.status && req.data.data.length !== 0) {
                 localStorage.setItem("user", req.data.data);
                 localStorage.setItem("isLoggedIn", true);
-                if (role === "faculty") {
+                if (role === "faculty" || role === "HOD" || role === "hod") {
                     window.location.href = "/faculty-dashboard";
                 } else {
                     window.location.href = "/student/dashboard";

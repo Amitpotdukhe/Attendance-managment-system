@@ -45,8 +45,8 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
+        title: "Subjects",
+        amount:6,
         link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
@@ -58,8 +58,7 @@ const Widget = ({ type }) => {
       break;
     case "balance":
       data = {
-        title: "BALANCE",
-        isMoney: true,
+        title: "7th Sem",
         link: "See details",
         icon: (
           <AccountBalanceWalletOutlinedIcon

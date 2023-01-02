@@ -12,7 +12,9 @@ import Login from "./layout/Login";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import MarkAttendance from "./pages/markAttendance/MarkAttendance";
+import ModifyAtt from "./pages/modifyAtt/ModifyAtt";
 import { useEffect } from "react";
+import AttAnalysis from "./pages/attAnalysis/AttAnalysis";
 
 function App() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -67,6 +69,15 @@ function App() {
                                 <Route
                                     path="mark-attendance"
                                     element={<MarkAttendance />}
+                                />
+                                <Route
+                                    path="modify-attendance"
+                                    element={<ModifyAtt />}
+                                />
+
+                                <Route
+                                    path="attendance-analysis"
+                                    element={<AttAnalysis />}
                                 />
                             </Route>
 

@@ -29,9 +29,12 @@ const hodRoutes = [
 
 const facultyRoutes = [
     { name: "Mark Attendance", path: "/faculty-dashboard/mark-attendance" },
-    { name: "Modify Attendance", path: "/faculty-dashboard/manageDepartment" },
-    { name: "Attendance Analysis", path: "/faculty-dashboard/manageSemester" },
-    { name: "Generate Report", path: "/faculty-dashboard/manageSubjects" },
+    { name: "Modify Attendance", path: "/faculty-dashboard/modify-attendance" },
+    {
+        name: "Attendance Analysis",
+        path: "/faculty-dashboard/attendance-analysis",
+    },
+    { name: "Generate Report", path: "/faculty-dashboard/" },
 ];
 
 export default function SideBar() {
@@ -130,7 +133,13 @@ export default function SideBar() {
                 variant="permanent"
                 anchor="left"
             >
-                {loggedUser[2] === "hod" ? hodBar() : facultyBar()}
+                {loggedUser[2] === "HOD" ? (
+                    <>
+                        {hodBar()} {facultyBar()}{" "}
+                    </>
+                ) : (
+                    facultyBar()
+                )}
 
                 <Divider />
                 <Grid container justifyContent="center">

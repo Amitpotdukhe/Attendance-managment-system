@@ -1,49 +1,102 @@
 import * as React from "react";
+import { Box, Typography } from "@mui/material/";
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "firstName", headerName: "First name", width: 130 },
-    { field: "lastName", headerName: "Last name", width: 130 },
-    {
-        field: "age",
-        headerName: "Age",
-        type: "number",
-        width: 90,
-    },
+    { field: "id", headerName: "RollNo", width: 90 },
     {
         field: "fullName",
-        headerName: "Full name",
-        description: "This column has a value getter and is not sortable.",
-        sortable: false,
-        width: 160,
-        valueGetter: (params) =>
-            `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+        headerName: "Name",
+        width: 200,
+        editable: true,
+    },
+
+    {
+        field: "PRN",
+        headerName: "PRN",
+        type: "number",
+        width: 120,
+        editable: true,
+    },
+
+    {
+        field: "totalAttendance",
+        headerName: "Total Attendance",
+        width: 130,
     },
 ];
 
 const rows = [
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+    {
+        id: 1,
+        fullName: "Tanushree Dongale",
+        PRN: 35,
+        Status: "P",
+        totalAttendance: 30,
+    },
+    {
+        id: 2,
+        fullName: "Tejas Borade",
+        PRN: 42,
+        totalAttendance: 30,
+    },
+    {
+        id: 3,
+        fullName: "Nikhil Tidke",
+        PRN: 45,
+        totalAttendance: 30,
+    },
+    {
+        id: 4,
+        fullName: "Amit Potdukhe",
+        PRN: 16,
+        totalAttendance: 30,
+    },
+    {
+        id: 5,
+        fullName: "Prajwal Bhasme",
+        PRN: 22,
+        totalAttendance: 30,
+    },
+    {
+        id: 6,
+        fullName: "Saransh Jaiswal",
+        PRN: 150,
+        totalAttendance: 30,
+    },
+    {
+        id: 7,
+        fullName: "Tosh Tonpe",
+        PRN: 44,
+        totalAttendance: 30,
+    },
+    {
+        id: 8,
+        fullName: "Dipak Matte",
+        PRN: 36,
+        totalAttendance: 30,
+    },
+    {
+        id: 9,
+        fullName: "Tanushree Dongale",
+        PRN: 65,
+        totalAttendance: 30,
+    },
 ];
 
 export default function Table() {
     return (
-        <div style={{ height: 600, width: "100%" }}>
+        <Box sx={{ height: 600, width: "100%" }}>
+            <Typography>List of all students</Typography>
             <DataGrid
                 rows={rows}
                 columns={columns}
                 pageSize={10}
                 rowsPerPageOptions={[5]}
                 checkboxSelection
+                disableSelectionOnClick
+                experimentalFeatures={{ newEditingApi: true }}
             />
-        </div>
+        </Box>
     );
 }

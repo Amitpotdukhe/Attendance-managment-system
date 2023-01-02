@@ -1,74 +1,67 @@
-import { Divider, Grid, Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import Table from "./Table";
 import axios from "axios";
-import Steper from "./Steper";
+import React, { useEffect } from "react";
 
 const facultySubjectIds = [
     {
         id: "1001",
+        subId: "3001",
         subject: "Blockchain Technology",
         faculty: "Sandesh Jain",
         email: "sandesh.jain@bitwardha.ac.in",
     },
     {
         id: "1002",
+        subId: "3002",
         subject: "Big Data Analytics",
         faculty: "Abhishek Kinhekar",
         email: "abhishek.kinhekar@bitwardha.ac.in",
     },
     {
         id: "1003",
+        subId: "3003",
         subject: "Software Engineering",
         faculty: "Sheetal Kale",
         email: "sheetal.kale@bitwardha.ac.in",
     },
     {
         id: "1004",
+        subId: "3004",
         subject: "Cloud Computing",
         faculty: "Akshay Saraf",
         email: "akshay.saraf@bitwardha.ac.in",
     },
     {
         id: "1005",
+        subId: "3005",
         subject: "System Administration",
         faculty: "Ajay Sahu",
         email: "ajay.sahu@bitwardha.ac.in",
     },
     {
         id: "1006",
+        subId: "3006",
         subject: "Full Stack Development",
         faculty: "Aihtesham Kazi",
         email: "aihtesham.kazi@bitwardha.ac.in",
     },
 ];
 
-const MarkAttendance = () => {
-    const [students, setStudents] = useState();
-    const [date, setDate] = useState(new Date());
-    useEffect(() => {
-        axios
-            .get(`/api/student/get-students`)
-            .then((result) => setStudents(result.data));
-    }, []);
-    console.log(students);
-    console.log(date);
+const AttAnalysis = () => {
     const fEmail = localStorage.getItem("user").split(",")[0];
     var x;
     facultySubjectIds.forEach((item) => {
         if (fEmail === item.email) {
-            x = item.subject;
+            x = item.subId;
         }
     });
-    return (
-        <div style={{ width: "100%" }}>
-            <Typography variant="h4">Mark Attendance for {x}:</Typography>
 
-            <div style={{ width: "70vw", margin: "20px" }}>
-                <Steper />
-            </div>
-        </div>
-    );
+    // const currSubject = localStorage.getItem("user").split(",")[]
+    // const [data, setData] = useEffect();
+    // useEffect(async () => {
+    //     const req = await axios.get();
+    // }, []);
+
+    return <div>AttAnalysis</div>;
 };
 
-export default MarkAttendance;
+export default AttAnalysis;
