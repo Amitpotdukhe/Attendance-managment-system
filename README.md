@@ -19,8 +19,8 @@
 </ul>
 
 <h3>Use Case Diagram</h3>
-<img
-src="url('![use case](https://user-images.githubusercontent.com/65117013/210491472-f51bd2cd-6ae5-4f5b-b554-548719c25362.jpg)')" width="50%">
+
+![use case](https://user-images.githubusercontent.com/65117013/210491472-f51bd2cd-6ae5-4f5b-b554-548719c25362.jpg)
 
 <h3>System Process Flow Diagram</h3>
 
