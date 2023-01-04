@@ -20,4 +20,8 @@
 
 <h3>Use Case Diagram</h3>
 
-![WhatsApp Image 2022-11-08 at 16 57 32](https://user-images.githubusercontent.com/65117013/200557423-0d0ec753-e75d-4b5e-ba2a-a3467f2e3538.jpg)
+![use case](https://user-images.githubusercontent.com/65117013/210491472-f51bd2cd-6ae5-4f5b-b554-548719c25362.jpg)
+
+<h3>System Process Flow Diagram</h3>
+
+![process_flow_new-Page-2 drawio](https://user-images.githubusercontent.com/65117013/210491545-c20c4288-1262-4bff-bad6-4d7db23c6146.png)
