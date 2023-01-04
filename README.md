@@ -19,9 +19,10 @@
 </ul>
 
 <h3>Use Case Diagram</h3>
-
-![use case](https://user-images.githubusercontent.com/65117013/210491472-f51bd2cd-6ae5-4f5b-b554-548719c25362.jpg)
+<img
+src="url('![use case](https://user-images.githubusercontent.com/65117013/210491472-f51bd2cd-6ae5-4f5b-b554-548719c25362.jpg)')" width="50%">
 
 <h3>System Process Flow Diagram</h3>
 
-![process_flow_new-Page-2 drawio](https://user-images.githubusercontent.com/65117013/210491545-c20c4288-1262-4bff-bad6-4d7db23c6146.png)
+![process_flow_new-Page-2 drawio](https://user-images.githubusercontent.com/65117013/210492026-bd41d939-9359-4435-9409-f781b835ea96.png)
+
